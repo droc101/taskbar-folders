@@ -261,5 +261,10 @@ namespace TaskbarFolders
                 SavePins();
             }
         }
+
+        private void exitProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.GetCurrentProcess().Kill();
+        }
     }
 }

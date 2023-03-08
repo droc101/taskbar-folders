@@ -38,6 +38,9 @@
   <PropertyGroup>
     <ApplicationIcon>imageres_9.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TaskbarFolders.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AeroSuite, Version=1.0.6216.29077, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AeroSuite.1.0.50\lib\AeroSuite.dll</HintPath>

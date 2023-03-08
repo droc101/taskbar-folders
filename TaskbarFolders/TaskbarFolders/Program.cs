@@ -33,6 +33,9 @@ namespace TaskbarFolders
                 var folder = new Settings();
                 folder.Pins = new List<string>();
                 folder.Name = "Main Folder";
+                folder.color = Color.FromArgb(0, 120, 212);
+                folder.useColor = true;
+                folder.ImagePath = "";
                 currentSettings.Add(folder);
                 SaveSettings();
             }
