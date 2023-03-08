@@ -151,7 +151,7 @@ namespace TaskbarFolders
 
         private void removeItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int pinIndex = settings.Pins.IndexOf(openFileDialog1.FileName)+1;
+            int pinIndex = settings.Pins.IndexOf(aeroListView1.SelectedItems[0].ImageKey);
             settings.Pins.RemoveAt(pinIndex);
             aeroListView1.Items.RemoveAt(pinIndex);
             SavePins();

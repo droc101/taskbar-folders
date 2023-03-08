@@ -42,14 +42,14 @@
             this.programSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteFolderToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.newFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.cueTextBox1 = new AeroSuite.Controls.CueTextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +74,7 @@
             this.aeroListView1.Location = new System.Drawing.Point(0, 26);
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
-            this.aeroListView1.Size = new System.Drawing.Size(320, 166);
+            this.aeroListView1.Size = new System.Drawing.Size(316, 162);
             this.aeroListView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.aeroListView1.TabIndex = 0;
             this.aeroListView1.UseCompatibleStateImageBehavior = false;
@@ -152,6 +152,18 @@
             this.newFolderToolStripMenuItem.Text = "New Folder";
             this.newFolderToolStripMenuItem.Click += new System.EventHandler(this.newFolderToolStripMenuItem_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // exitProgramToolStripMenuItem
+            // 
+            this.exitProgramToolStripMenuItem.Name = "exitProgramToolStripMenuItem";
+            this.exitProgramToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitProgramToolStripMenuItem.Text = "Exit Program";
+            this.exitProgramToolStripMenuItem.Click += new System.EventHandler(this.exitProgramToolStripMenuItem_Click);
+            // 
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
@@ -182,7 +194,7 @@
             this.cueTextBox1.Location = new System.Drawing.Point(8, 3);
             this.cueTextBox1.MinimumSize = new System.Drawing.Size(0, 22);
             this.cueTextBox1.Name = "cueTextBox1";
-            this.cueTextBox1.Size = new System.Drawing.Size(304, 22);
+            this.cueTextBox1.Size = new System.Drawing.Size(300, 22);
             this.cueTextBox1.TabIndex = 1;
             this.cueTextBox1.TextChanged += new System.EventHandler(this.cueTextBox1_TextChanged);
             this.cueTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cueTextBox1_KeyDown);
@@ -204,27 +216,15 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 26);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(316, 26);
             this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
-            // 
-            // exitProgramToolStripMenuItem
-            // 
-            this.exitProgramToolStripMenuItem.Name = "exitProgramToolStripMenuItem";
-            this.exitProgramToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exitProgramToolStripMenuItem.Text = "Exit Program";
-            this.exitProgramToolStripMenuItem.Click += new System.EventHandler(this.exitProgramToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(320, 192);
+            this.ClientSize = new System.Drawing.Size(316, 188);
             this.ControlBox = false;
             this.Controls.Add(this.aeroListView1);
             this.Controls.Add(this.tableLayoutPanel1);
