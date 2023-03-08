@@ -66,8 +66,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(294, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -80,9 +80,9 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(8, 8);
+            this.button1.Location = new System.Drawing.Point(91, 8);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(77, 24);
+            this.button1.Size = new System.Drawing.Size(78, 24);
             this.button1.TabIndex = 0;
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = true;
@@ -91,9 +91,9 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(91, 8);
+            this.button2.Location = new System.Drawing.Point(8, 8);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(78, 24);
+            this.button2.Size = new System.Drawing.Size(77, 24);
             this.button2.TabIndex = 1;
             this.button2.Text = "OK";
             this.button2.UseVisualStyleBackColor = true;
@@ -208,8 +208,10 @@
             // 
             // EditFolderDialog
             // 
+            this.AcceptButton = this.button2;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(471, 273);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.radioButton2);

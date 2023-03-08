@@ -19,6 +19,10 @@ namespace TaskbarFolders
             AddPinnedItem(@"C:\Windows\system32\taskmgr.exe");
         }
 
+        List<ToolStripItem> folderContextItems;
+        List<ToolStripItem> fileContextItems;
+        List<ToolStripItem> mainContextItems;
+
         Program.Settings settings;
         int settingsIndex;
 
@@ -35,6 +39,9 @@ namespace TaskbarFolders
             this.settingsIndex = settingsIndex;
             UpdateLooks();
             Size = new Size(350, 222);
+            fileContextItems = TransferMenuItems(fileContextMenu.Items);
+            folderContextItems = TransferMenuItems(folderContextMenu.Items);
+            mainContextItems= TransferMenuItems(mainContextMenu.Items);
             
         }
 
@@ -111,29 +118,8 @@ namespace TaskbarFolders
             Program.SaveSettings();
         }
 
-        private void addItemToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                if (settings.Pins.Contains(openFileDialog1.FileName))
-                {
-                    MessageBox.Show("This item is already pinned.", "Can't pin", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
-                }
-                AddPinnedItem(openFileDialog1.FileName);
-                settings.Pins.Add(openFileDialog1.FileName);
-                SavePins();
-            }
-        }
-
         private void contextMenuStrip1_Opened(object sender, EventArgs e)
         {
-            if (aeroListView1.SelectedItems.Count > 0)
-            {
-                removeItemToolStripMenuItem.Enabled= true;
-            } else
-            {
-                removeItemToolStripMenuItem.Enabled= false;
-            }
         }
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
@@ -149,57 +135,8 @@ namespace TaskbarFolders
             }
         }
 
-        private void removeItemToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int pinIndex = settings.Pins.IndexOf(aeroListView1.SelectedItems[0].ImageKey);
-            settings.Pins.RemoveAt(pinIndex);
-            aeroListView1.Items.RemoveAt(pinIndex);
-            SavePins();
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-        }
-
-        private void programSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EditFolderDialog efd = new EditFolderDialog(settings);
-            if (efd.ShowDialog() == DialogResult.OK)
-            {
-                settings = efd.settings;
-                SavePins();
-                UpdateLooks();
-            }
-        }
-
-        private void deleteFolderToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (Program.currentSettings.Count == 1)
-            {
-                MessageBox.Show("You can't delete the only folder.", "Can't delete", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
-            } else
-            {
-                Program.currentSettings.RemoveAt(settingsIndex);
-                Program.SaveSettings();
-                Close();
-            }
-        }
-
-        private void newFolderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Program.Settings newf = new Program.Settings();
-            newf.Name = "New Folder";
-            newf.Pins = new List<string>();
-            Program.currentSettings.Add(newf);
-            int idx = Program.currentSettings.IndexOf(newf);
-            Program.currentSettings.Remove(newf);
-            EditFolderDialog efd = new EditFolderDialog(newf);
-            if (efd.ShowDialog() == DialogResult.OK)
-            {
-                Program.currentSettings.Add(efd.settings);
-                new Form1(efd.settings, idx).Show();
-                Program.SaveSettings();
-            }
         }
 
         private void cueTextBox1_TextChanged(object sender, EventArgs e)
@@ -248,7 +185,95 @@ namespace TaskbarFolders
             }
         }
 
-        private void addFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exitProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.GetCurrentProcess().Kill();
+        }
+
+        void TransferMenuItems(ToolStripItemCollection from, ToolStripItemCollection to)
+        {
+            List<ToolStripItem> tempList = new List<ToolStripItem>();
+
+            foreach (ToolStripItem item in from)
+            {
+                tempList.Add(item);
+            }
+
+            foreach (ToolStripItem item in tempList)
+            {
+                item.Tag = from;
+                to.Add(item);
+            }
+        }
+
+        void TransferMenuItems(List<ToolStripItem> from, ToolStripItemCollection to)
+        {
+            List<ToolStripItem> tempList = new List<ToolStripItem>();
+
+            foreach (ToolStripItem item in from)
+            {
+                tempList.Add(item);
+            }
+
+            foreach (ToolStripItem item in tempList)
+            {
+                item.Tag = from;
+                to.Add(item);
+            }
+        }
+
+        List<ToolStripItem> TransferMenuItems(ToolStripItemCollection from)
+        {
+            List<ToolStripItem> tempList = new List<ToolStripItem>();
+
+            foreach (ToolStripItem item in from)
+            {
+                tempList.Add(item);
+            }
+
+            foreach (ToolStripItem item in tempList)
+            {
+                item.Tag = from;
+            }
+            return tempList;
+        }
+
+        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            contextMenuStrip1.Items.Clear();
+            if (aeroListView1.SelectedItems.Count != 0)
+            {
+                if (Directory.Exists(aeroListView1.SelectedItems[0].ImageKey))
+                {
+                    TransferMenuItems(folderContextItems, contextMenuStrip1.Items);
+                }
+                else
+                {
+                    TransferMenuItems(fileContextItems, contextMenuStrip1.Items);
+                }
+            }
+            TransferMenuItems(mainContextItems, contextMenuStrip1.Items);
+        }
+
+        private void contextMenuStrip1_Closing(object sender, ToolStripDropDownClosingEventArgs e)
+        {
+        }
+
+        private void addFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (settings.Pins.Contains(openFileDialog1.FileName))
+                {
+                    MessageBox.Show("This item is already pinned.", "Can't pin", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                }
+                AddPinnedItem(openFileDialog1.FileName);
+                settings.Pins.Add(openFileDialog1.FileName);
+                SavePins();
+            }
+        }
+
+        private void addFolderToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -262,9 +287,107 @@ namespace TaskbarFolders
             }
         }
 
-        private void exitProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        private void editFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            EditFolderDialog efd = new EditFolderDialog(settings);
+            if (efd.ShowDialog() == DialogResult.OK)
+            {
+                settings = efd.settings;
+                SavePins();
+                UpdateLooks();
+            }
+        }
+
+        private void addTaskbarFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.Settings newf = new Program.Settings();
+            newf.Name = "New Folder";
+            newf.Pins = new List<string>();
+            newf.ImagePath = "";
+            newf.color = Color.FromArgb(0, 120, 212);
+            newf.useColor = true;
+            Program.currentSettings.Add(newf);
+            int idx = Program.currentSettings.IndexOf(newf);
+            Program.currentSettings.Remove(newf);
+            EditFolderDialog efd = new EditFolderDialog(newf);
+            if (efd.ShowDialog() == DialogResult.OK)
+            {
+                Program.currentSettings.Add(efd.settings);
+                new Form1(efd.settings, idx).Show();
+                Program.SaveSettings();
+            }
+        }
+
+        private void deleteTaskbarFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.currentSettings.Count == 1)
+            {
+                MessageBox.Show("You can't delete the only folder.", "Can't delete", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+            }
+            else
+            {
+                Program.currentSettings.RemoveAt(settingsIndex);
+                Program.SaveSettings();
+                Close();
+            }
+        }
+
+        private void exitProgramToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SavePins();
+            notifyIcon1.Visible= false;
             Process.GetCurrentProcess().Kill();
+        }
+
+        private void removeItemToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            int pinIndex = settings.Pins.IndexOf(aeroListView1.SelectedItems[0].ImageKey);
+            settings.Pins.RemoveAt(pinIndex);
+            aeroListView1.Items.RemoveAt(pinIndex);
+            SavePins();
+        }
+
+        private void removeItemToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            int pinIndex = settings.Pins.IndexOf(aeroListView1.SelectedItems[0].ImageKey);
+            settings.Pins.RemoveAt(pinIndex);
+            aeroListView1.Items.RemoveAt(pinIndex);
+            SavePins();
+        }
+
+        private void exploreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(aeroListView1.SelectedItems[0].ImageKey);
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(aeroListView1.SelectedItems[0].ImageKey);
+        }
+
+        private void openFileLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string FilePath = aeroListView1.SelectedItems[0].ImageKey;
+            string DirPath = new FileInfo(FilePath).DirectoryName;
+
+            Process.Start(DirPath);
+        }
+
+        public static void ShowOpenWithDialog(string path)
+        {
+            var args = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "shell32.dll");
+            args += ",OpenAs_RunDLL " + path;
+            Process.Start("rundll32.exe", args);
+        }
+
+        private void openWithToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowOpenWithDialog(aeroListView1.SelectedItems[0].ImageKey);
+        }
+
+        private void programSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new SettingsForm().ShowDialog();
         }
     }
 }
