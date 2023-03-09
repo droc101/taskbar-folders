@@ -48,6 +48,7 @@ namespace TaskbarFolders
 
         void UpdateLooks()
         {
+            cueTextBox1.Cue = "Search " + settings.Name + "...";
             aeroListView1.Items.Clear();
             foreach (Program.Pin pin in settings.Pins)
             {
@@ -350,7 +351,7 @@ namespace TaskbarFolders
                 } else
                 {
                     tagsToolStripMenuItem.Enabled= true;
-                    tagsToolStripMenuItem.Text = "Tags";
+                    tagsToolStripMenuItem.Text = "&Tags";
                     foreach (Tag tag in settings.Tags)
                     {
                         int idx = FindPinIndex(aeroListView1.SelectedItems[0].ImageKey);

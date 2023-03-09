@@ -225,7 +225,7 @@
             this.groupBox2.Size = new System.Drawing.Size(373, 108);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Third Party Libraries";
+            this.groupBox2.Text = "Thanks to Third party Libraries && Developers";
             // 
             // aeroListView1
             // 

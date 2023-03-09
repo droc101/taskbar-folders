@@ -86,7 +86,7 @@
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
             this.aeroListView1.ShowItemToolTips = true;
-            this.aeroListView1.Size = new System.Drawing.Size(268, 114);
+            this.aeroListView1.Size = new System.Drawing.Size(264, 110);
             this.aeroListView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.aeroListView1.TabIndex = 0;
             this.aeroListView1.UseCompatibleStateImageBehavior = false;
@@ -119,7 +119,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.Filter = "Programs|*.exe|All Files|*.*";
-            this.openFileDialog1.Title = "Pin Item";
+            this.openFileDialog1.Title = "Select a File to pin";
             // 
             // cueTextBox1
             // 
@@ -132,7 +132,7 @@
             this.cueTextBox1.Location = new System.Drawing.Point(8, 3);
             this.cueTextBox1.MinimumSize = new System.Drawing.Size(0, 22);
             this.cueTextBox1.Name = "cueTextBox1";
-            this.cueTextBox1.Size = new System.Drawing.Size(252, 22);
+            this.cueTextBox1.Size = new System.Drawing.Size(248, 22);
             this.cueTextBox1.TabIndex = 1;
             this.cueTextBox1.TextChanged += new System.EventHandler(this.cueTextBox1_TextChanged);
             this.cueTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cueTextBox1_KeyDown);
@@ -150,7 +150,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(268, 26);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(264, 26);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // mainContextMenu
@@ -331,6 +331,10 @@
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(141, 6);
             // 
+            // folderBrowserDialog1
+            // 
+            this.folderBrowserDialog1.Description = "Select a Folder to pin";
+            // 
             // taskDialog1
             // 
             this.taskDialog1.Buttons.Add(this.taskDialogButton1);
@@ -356,7 +360,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(268, 140);
+            this.ClientSize = new System.Drawing.Size(264, 136);
             this.ControlBox = false;
             this.Controls.Add(this.aeroListView1);
             this.Controls.Add(this.tableLayoutPanel1);
