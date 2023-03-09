@@ -140,6 +140,9 @@ namespace TaskbarFolders
                 aeroListView1.Focus();
                 Show();
                 Activate();
+            } else if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position);
             }
         }
 
@@ -249,7 +252,7 @@ namespace TaskbarFolders
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             contextMenuStrip1.Items.Clear();
-            if (aeroListView1.SelectedItems.Count != 0)
+            if (aeroListView1.SelectedItems.Count != 0 && Visible)
             {
                 if (Directory.Exists(aeroListView1.SelectedItems[0].ImageKey))
                 {

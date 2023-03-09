@@ -68,6 +68,8 @@ namespace TaskbarFolders
                 folder.ImagePath = "";
                 currentSettings.Folders.Add(folder);
                 SaveSettings();
+                Welcome welcome = new Welcome();
+                welcome.ShowDialog();
             }
             
         }

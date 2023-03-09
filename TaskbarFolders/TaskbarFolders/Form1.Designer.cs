@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Files & Folders", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Programs", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Files & Folders", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Programs", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.aeroListView1 = new AeroSuite.Controls.AeroListView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -81,19 +81,19 @@
             this.aeroListView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.aeroListView1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.aeroListView1.FullRowSelect = true;
-            listViewGroup3.Header = "Files & Folders";
-            listViewGroup3.Name = "listViewGroup1";
-            listViewGroup4.Header = "Programs";
-            listViewGroup4.Name = "listViewGroup2";
+            listViewGroup1.Header = "Files & Folders";
+            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup2.Header = "Programs";
+            listViewGroup2.Name = "listViewGroup2";
             this.aeroListView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3,
-            listViewGroup4});
+            listViewGroup1,
+            listViewGroup2});
             this.aeroListView1.HideSelection = false;
             this.aeroListView1.LargeImageList = this.imageList1;
             this.aeroListView1.Location = new System.Drawing.Point(0, 26);
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
-            this.aeroListView1.Size = new System.Drawing.Size(300, 146);
+            this.aeroListView1.Size = new System.Drawing.Size(292, 138);
             this.aeroListView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.aeroListView1.TabIndex = 0;
             this.aeroListView1.UseCompatibleStateImageBehavior = false;
@@ -103,7 +103,7 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip1.Closing += new System.Windows.Forms.ToolStripDropDownClosingEventHandler(this.contextMenuStrip1_Closing);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
@@ -117,7 +117,6 @@
             // 
             // notifyIcon1
             // 
-            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "Taskbar Folders";
             this.notifyIcon1.Visible = true;
@@ -139,7 +138,7 @@
             this.cueTextBox1.Location = new System.Drawing.Point(8, 3);
             this.cueTextBox1.MinimumSize = new System.Drawing.Size(0, 22);
             this.cueTextBox1.Name = "cueTextBox1";
-            this.cueTextBox1.Size = new System.Drawing.Size(284, 22);
+            this.cueTextBox1.Size = new System.Drawing.Size(276, 22);
             this.cueTextBox1.TabIndex = 1;
             this.cueTextBox1.TextChanged += new System.EventHandler(this.cueTextBox1_TextChanged);
             this.cueTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cueTextBox1_KeyDown);
@@ -161,7 +160,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 26);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(292, 26);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // mainContextMenu
@@ -185,7 +184,7 @@
             this.addFileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addFileToolStripMenuItem.Image")));
             this.addFileToolStripMenuItem.Name = "addFileToolStripMenuItem";
             this.addFileToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.addFileToolStripMenuItem.Text = "Add File";
+            this.addFileToolStripMenuItem.Text = "Add &File";
             this.addFileToolStripMenuItem.Click += new System.EventHandler(this.addFileToolStripMenuItem_Click);
             // 
             // addFolderToolStripMenuItem1
@@ -193,7 +192,7 @@
             this.addFolderToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("addFolderToolStripMenuItem1.Image")));
             this.addFolderToolStripMenuItem1.Name = "addFolderToolStripMenuItem1";
             this.addFolderToolStripMenuItem1.Size = new System.Drawing.Size(205, 22);
-            this.addFolderToolStripMenuItem1.Text = "Add Folder";
+            this.addFolderToolStripMenuItem1.Text = "Add F&older";
             this.addFolderToolStripMenuItem1.Click += new System.EventHandler(this.addFolderToolStripMenuItem1_Click);
             // 
             // toolStripSeparator4
@@ -206,7 +205,7 @@
             this.editFolderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editFolderToolStripMenuItem.Image")));
             this.editFolderToolStripMenuItem.Name = "editFolderToolStripMenuItem";
             this.editFolderToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.editFolderToolStripMenuItem.Text = "Taskbar Folder Properties";
+            this.editFolderToolStripMenuItem.Text = "Taskbar Folder &Properties";
             this.editFolderToolStripMenuItem.Click += new System.EventHandler(this.editFolderToolStripMenuItem_Click);
             // 
             // programSettingsToolStripMenuItem
@@ -214,7 +213,7 @@
             this.programSettingsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("programSettingsToolStripMenuItem.Image")));
             this.programSettingsToolStripMenuItem.Name = "programSettingsToolStripMenuItem";
             this.programSettingsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.programSettingsToolStripMenuItem.Text = "About";
+            this.programSettingsToolStripMenuItem.Text = "&About";
             this.programSettingsToolStripMenuItem.Click += new System.EventHandler(this.programSettingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
@@ -226,14 +225,14 @@
             // 
             this.addTaskbarFolderToolStripMenuItem.Name = "addTaskbarFolderToolStripMenuItem";
             this.addTaskbarFolderToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.addTaskbarFolderToolStripMenuItem.Text = "Add Taskbar Folder";
+            this.addTaskbarFolderToolStripMenuItem.Text = "Add &Taskbar Folder";
             this.addTaskbarFolderToolStripMenuItem.Click += new System.EventHandler(this.addTaskbarFolderToolStripMenuItem_Click);
             // 
             // deleteTaskbarFolderToolStripMenuItem
             // 
             this.deleteTaskbarFolderToolStripMenuItem.Name = "deleteTaskbarFolderToolStripMenuItem";
             this.deleteTaskbarFolderToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.deleteTaskbarFolderToolStripMenuItem.Text = "Delete Taskbar Folder";
+            this.deleteTaskbarFolderToolStripMenuItem.Text = "&Delete Taskbar Folder";
             this.deleteTaskbarFolderToolStripMenuItem.Click += new System.EventHandler(this.deleteTaskbarFolderToolStripMenuItem_Click);
             // 
             // toolStripSeparator12
@@ -245,7 +244,7 @@
             // 
             this.exitProgramToolStripMenuItem1.Name = "exitProgramToolStripMenuItem1";
             this.exitProgramToolStripMenuItem1.Size = new System.Drawing.Size(205, 22);
-            this.exitProgramToolStripMenuItem1.Text = "Exit Program";
+            this.exitProgramToolStripMenuItem1.Text = "&Exit Program";
             this.exitProgramToolStripMenuItem1.Click += new System.EventHandler(this.exitProgramToolStripMenuItem1_Click);
             // 
             // folderContextMenu
@@ -261,7 +260,7 @@
             this.exploreToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exploreToolStripMenuItem.Image")));
             this.exploreToolStripMenuItem.Name = "exploreToolStripMenuItem";
             this.exploreToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.exploreToolStripMenuItem.Text = "Explore";
+            this.exploreToolStripMenuItem.Text = "&Explore";
             this.exploreToolStripMenuItem.Click += new System.EventHandler(this.exploreToolStripMenuItem_Click);
             // 
             // fileContextMenu
@@ -280,14 +279,14 @@
             this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // openWithToolStripMenuItem
             // 
             this.openWithToolStripMenuItem.Name = "openWithToolStripMenuItem";
             this.openWithToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.openWithToolStripMenuItem.Text = "Open With";
+            this.openWithToolStripMenuItem.Text = "Open &With";
             this.openWithToolStripMenuItem.Click += new System.EventHandler(this.openWithToolStripMenuItem_Click);
             // 
             // toolStripSeparator9
@@ -300,7 +299,7 @@
             this.openFileLocationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openFileLocationToolStripMenuItem.Image")));
             this.openFileLocationToolStripMenuItem.Name = "openFileLocationToolStripMenuItem";
             this.openFileLocationToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.openFileLocationToolStripMenuItem.Text = "Open File Location";
+            this.openFileLocationToolStripMenuItem.Text = "Open File &Location";
             this.openFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openFileLocationToolStripMenuItem_Click);
             // 
             // itemContextMenu
@@ -325,7 +324,7 @@
             // 
             this.tagsToolStripMenuItem.Name = "tagsToolStripMenuItem";
             this.tagsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-            this.tagsToolStripMenuItem.Text = "Tags";
+            this.tagsToolStripMenuItem.Text = "&Tags";
             // 
             // toolStripSeparator2
             // 
@@ -360,7 +359,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(300, 172);
+            this.ClientSize = new System.Drawing.Size(292, 164);
             this.ControlBox = false;
             this.Controls.Add(this.aeroListView1);
             this.Controls.Add(this.tableLayoutPanel1);
