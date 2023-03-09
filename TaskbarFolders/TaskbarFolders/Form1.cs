@@ -198,13 +198,32 @@ namespace TaskbarFolders
         private void cueTextBox1_TextChanged(object sender, EventArgs e)
         {
             aeroListView1.Items.Clear();
-            foreach (Program.Pin pin in settings.Pins)
+            if (cueTextBox1.Text.StartsWith("*"))
             {
-                if (GetItemDesc(pin).ToLower().Contains(cueTextBox1.Text.ToLower()) || String.IsNullOrEmpty(cueTextBox1.Text))
+                // Tag Search
+                foreach (Program.Pin pin in settings.Pins)
                 {
-                    AddPinnedItem(pin);
+                    foreach (string tag in pin.Tags)
+                    {
+                        if (tag.ToLower().Contains(cueTextBox1.Text.TrimStart('*').ToLower()))
+                        {
+                            AddPinnedItem(pin);
+                            break;
+                        }
+                    }
+                }
+            } else
+            {
+                // Name search
+                foreach (Program.Pin pin in settings.Pins)
+                {
+                    if (GetItemDesc(pin).ToLower().Contains(cueTextBox1.Text.ToLower()) || String.IsNullOrEmpty(cueTextBox1.Text))
+                    {
+                        AddPinnedItem(pin);
+                    }
                 }
             }
+            
             if (aeroListView1.Items.Count > 0)
             {
                 aeroListView1.SelectedIndices.Clear();
