@@ -50,8 +50,6 @@ namespace TaskbarFolders
                 AddPinnedItem(pin);
             }
 
-            
-
             notifyIcon1.Text = settings.Name;
             if (settings.useColor)
             {
@@ -124,9 +122,16 @@ namespace TaskbarFolders
             lvi.ToolTipText = desc;
             if (pin.Tags.Count > 0)
             {
-                Tag t = findTag(pin.Tags.Last()).Value;
-                lvi.ForeColor = t.FontColor;
-                lvi.ToolTipText += Environment.NewLine + String.Join(", ", pin.Tags);
+                try
+                {
+                    Tag t = findTag(pin.Tags.Last()).Value;
+                    lvi.ForeColor = t.FontColor;
+                    lvi.ToolTipText += Environment.NewLine + String.Join(", ", pin.Tags);
+                } catch (Exception ex)
+                {
+
+                }
+                
             }
             aeroListView1.Items.Add(lvi);
         }
@@ -174,7 +179,7 @@ namespace TaskbarFolders
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button== MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 Location = Point.Subtract((Point)Screen.PrimaryScreen.WorkingArea.Size, Size);
                 Location = Point.Subtract(Location, new Size(10, 10));
@@ -303,20 +308,30 @@ namespace TaskbarFolders
                     TransferMenuItems(fileContextItems, contextMenuStrip1.Items);
                 }
                 tagsToolStripMenuItem.DropDownItems.Clear();
-                foreach (Tag tag in settings.Tags)
+                if (settings.Tags.Count == 0)
                 {
-                    int idx = FindPinIndex(aeroListView1.SelectedItems[0].ImageKey);
-                    Pin pin = settings.Pins[idx];
-                    ToolStripMenuItem tmi = new ToolStripMenuItem();
-                    tmi.Text = tag.Name;
-                    tmi.ForeColor = tag.FontColor;
-                    tmi.Tag = tag;
-                    tmi.Checked = pin.Tags.Contains(tag.Name);
-                    tmi.CheckOnClick = true;
-                    tmi.CheckedChanged += Tmi_CheckedChanged;
-                    tagsToolStripMenuItem.DropDownItems.Add(tmi);
+                    tagsToolStripMenuItem.Text = "No Tags";
+                    tagsToolStripMenuItem.Enabled= false;
+                } else
+                {
+                    tagsToolStripMenuItem.Enabled= true;
+                    tagsToolStripMenuItem.Text = "Tags";
+                    foreach (Tag tag in settings.Tags)
+                    {
+                        int idx = FindPinIndex(aeroListView1.SelectedItems[0].ImageKey);
+                        Pin pin = settings.Pins[idx];
+                        ToolStripMenuItem tmi = new ToolStripMenuItem();
+                        tmi.Text = tag.Name;
+                        tmi.ForeColor = tag.FontColor;
+                        tmi.Tag = tag;
+                        tmi.Checked = pin.Tags.Contains(tag.Name);
+                        tmi.CheckOnClick = true;
+                        tmi.CheckedChanged += Tmi_CheckedChanged;
+                        tagsToolStripMenuItem.DropDownItems.Add(tmi);
 
+                    }
                 }
+                
                 TransferMenuItems(itemContextItems, contextMenuStrip1.Items);
             }
             TransferMenuItems(mainContextItems, contextMenuStrip1.Items);
