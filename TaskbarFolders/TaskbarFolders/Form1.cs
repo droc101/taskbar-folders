@@ -476,9 +476,12 @@ namespace TaskbarFolders
 
         private void exitProgramToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SavePins();
-            notifyIcon1.Visible= false;
-            Process.GetCurrentProcess().Kill();
+            if (taskDialog1.ShowDialog().ButtonType == Ookii.Dialogs.WinForms.ButtonType.Ok)
+            {
+                SavePins();
+                notifyIcon1.Visible = false;
+                Process.GetCurrentProcess().Kill();
+            }
         }
 
         int FindPinIndex(string pin)

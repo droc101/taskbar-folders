@@ -62,6 +62,9 @@
             this.removeItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.folderBrowserDialog1 = new Ookii.Dialogs.WinForms.VistaFolderBrowserDialog();
+            this.taskDialog1 = new Ookii.Dialogs.WinForms.TaskDialog(this.components);
+            this.taskDialogButton1 = new Ookii.Dialogs.WinForms.TaskDialogButton(this.components);
+            this.taskDialogButton2 = new Ookii.Dialogs.WinForms.TaskDialogButton(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.mainContextMenu.SuspendLayout();
             this.folderContextMenu.SuspendLayout();
@@ -83,7 +86,7 @@
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
             this.aeroListView1.ShowItemToolTips = true;
-            this.aeroListView1.Size = new System.Drawing.Size(272, 118);
+            this.aeroListView1.Size = new System.Drawing.Size(268, 114);
             this.aeroListView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.aeroListView1.TabIndex = 0;
             this.aeroListView1.UseCompatibleStateImageBehavior = false;
@@ -129,7 +132,7 @@
             this.cueTextBox1.Location = new System.Drawing.Point(8, 3);
             this.cueTextBox1.MinimumSize = new System.Drawing.Size(0, 22);
             this.cueTextBox1.Name = "cueTextBox1";
-            this.cueTextBox1.Size = new System.Drawing.Size(256, 22);
+            this.cueTextBox1.Size = new System.Drawing.Size(252, 22);
             this.cueTextBox1.TabIndex = 1;
             this.cueTextBox1.TextChanged += new System.EventHandler(this.cueTextBox1_TextChanged);
             this.cueTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cueTextBox1_KeyDown);
@@ -147,7 +150,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(272, 26);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(268, 26);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // mainContextMenu
@@ -328,12 +331,32 @@
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(141, 6);
             // 
+            // taskDialog1
+            // 
+            this.taskDialog1.Buttons.Add(this.taskDialogButton1);
+            this.taskDialog1.Buttons.Add(this.taskDialogButton2);
+            this.taskDialog1.Content = "Your settings will be saved.\r\nIf the program is in your startup folder, it will a" +
+    "utomatically open when Windows starts.";
+            this.taskDialog1.MainIcon = Ookii.Dialogs.WinForms.TaskDialogIcon.Information;
+            this.taskDialog1.MainInstruction = "Do you want to exit?";
+            this.taskDialog1.WindowTitle = "Exit Program?";
+            // 
+            // taskDialogButton1
+            // 
+            this.taskDialogButton1.ButtonType = Ookii.Dialogs.WinForms.ButtonType.Ok;
+            this.taskDialogButton1.Text = "OK";
+            // 
+            // taskDialogButton2
+            // 
+            this.taskDialogButton2.ButtonType = Ookii.Dialogs.WinForms.ButtonType.Cancel;
+            this.taskDialogButton2.Text = "Cancel";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(272, 144);
+            this.ClientSize = new System.Drawing.Size(268, 140);
             this.ControlBox = false;
             this.Controls.Add(this.aeroListView1);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -394,6 +417,9 @@
         private System.Windows.Forms.ToolStripMenuItem removeItemToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private Ookii.Dialogs.WinForms.VistaFolderBrowserDialog folderBrowserDialog1;
+        private Ookii.Dialogs.WinForms.TaskDialog taskDialog1;
+        private Ookii.Dialogs.WinForms.TaskDialogButton taskDialogButton1;
+        private Ookii.Dialogs.WinForms.TaskDialogButton taskDialogButton2;
     }
 }
 
