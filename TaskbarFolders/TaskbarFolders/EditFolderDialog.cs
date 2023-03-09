@@ -118,9 +118,22 @@ namespace TaskbarFolders
             TagEditDialog ted = new TagEditDialog(tag);
             if (ted.ShowDialog() == DialogResult.OK)
             {
+                if (doesTagExist(ted.tag.Name))
+                {
+                    MessageBox.Show("That tag already exists", "Can't add tag", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                }
                 settings.Tags.Add(ted.tag);
                 UpdateTagLV();
             }
+        }
+
+        bool doesTagExist(string tag)
+        {
+            foreach (ListViewItem lvi in aeroListView1.Items)
+            {
+                if (lvi.Text == tag) return true;
+            }
+            return false;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -142,6 +155,10 @@ namespace TaskbarFolders
                 TagEditDialog ted = new TagEditDialog(tag);
                 if (ted.ShowDialog() == DialogResult.OK)
                 {
+                    if (doesTagExist(ted.tag.Name) && ted.tag.Name != tag.Name)
+                    {
+                        MessageBox.Show("That tag already exists", "Can't add tag", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                    }
                     aeroListView1.Items[index].Text = ted.tag.Name;
                     aeroListView1.Items[index].ForeColor = ted.tag.FontColor;
                 }

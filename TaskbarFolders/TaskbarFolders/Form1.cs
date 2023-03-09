@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Net.NetworkInformation;
+using static TaskbarFolders.Program;
+using System.Linq;
 
 namespace TaskbarFolders
 {
@@ -30,10 +32,6 @@ namespace TaskbarFolders
             InitializeComponent();
             
             Round.RoundWindow(this);
-            foreach (Program.Pin pin in settings.Pins)
-            {
-                AddPinnedItem(pin);
-            }
             this.settings = settings;
             this.settingsIndex = settingsIndex;
             UpdateLooks();
@@ -46,6 +44,14 @@ namespace TaskbarFolders
 
         void UpdateLooks()
         {
+            aeroListView1.Items.Clear();
+            foreach (Program.Pin pin in settings.Pins)
+            {
+                AddPinnedItem(pin);
+            }
+
+            
+
             notifyIcon1.Text = settings.Name;
             if (settings.useColor)
             {
@@ -58,12 +64,30 @@ namespace TaskbarFolders
             }
         }
 
+        private void Tmi_CheckedChanged(object sender, EventArgs e)
+        {
+            ToolStripMenuItem tmi = (ToolStripMenuItem)sender;
+            Tag t = (Tag)(tmi.Tag);
+            int idx = FindPinIndex(aeroListView1.SelectedItems[0].ImageKey);
+            Pin pin = settings.Pins[idx];
+            if (!tmi.Checked)
+            {
+                pin.Tags.Remove(t.Name);
+            } else
+            {
+                pin.Tags.Add(t.Name);
+            }
+            UpdateLooks();
+            SavePins();
+        }
+
         string GetItemDesc(Program.Pin pin)
         {
             if (Directory.Exists(pin.Path))
             {
                 return new DirectoryInfo(pin.Path).Name;
             }
+            
             FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(pin.Path);
             string desc = myFileVersionInfo.FileDescription;
             if (String.IsNullOrEmpty(desc))
@@ -90,14 +114,32 @@ namespace TaskbarFolders
             Image bmp = IconUtils.GetLargestIcon(filePath);
             imageList1.Images.Add(filePath, bmp);
             lvi.ImageKey = filePath;
-            if (filePath.EndsWith(".exe"))
+            //if (filePath.EndsWith(".exe"))
+            //{
+            //    lvi.Group = aeroListView1.Groups[1];
+            //} else
+            //{
+            //    lvi.Group = aeroListView1.Groups[0];
+            //}
+            lvi.ToolTipText = desc;
+            if (pin.Tags.Count > 0)
             {
-                lvi.Group = aeroListView1.Groups[1];
-            } else
-            {
-                lvi.Group = aeroListView1.Groups[0];
+                Tag t = findTag(pin.Tags.Last()).Value;
+                lvi.ForeColor = t.FontColor;
+                lvi.ToolTipText += Environment.NewLine + String.Join(", ", pin.Tags);
             }
             aeroListView1.Items.Add(lvi);
+        }
+
+        Tag? findTag(string name)
+        {
+            foreach (Tag tag in settings.Tags)
+            {
+                if (tag.Name == name) {
+                    return tag;
+                }
+            }
+            return null;
         }
 
         private void aeroListView1_ItemActivate(object sender, EventArgs e)
@@ -140,9 +182,7 @@ namespace TaskbarFolders
                 aeroListView1.Focus();
                 Show();
                 Activate();
-            } else if (e.Button == MouseButtons.Right)
-            {
-                contextMenuStrip1.Show(Cursor.Position);
+                BringToFront();
             }
         }
 
@@ -261,6 +301,21 @@ namespace TaskbarFolders
                 else
                 {
                     TransferMenuItems(fileContextItems, contextMenuStrip1.Items);
+                }
+                tagsToolStripMenuItem.DropDownItems.Clear();
+                foreach (Tag tag in settings.Tags)
+                {
+                    int idx = FindPinIndex(aeroListView1.SelectedItems[0].ImageKey);
+                    Pin pin = settings.Pins[idx];
+                    ToolStripMenuItem tmi = new ToolStripMenuItem();
+                    tmi.Text = tag.Name;
+                    tmi.ForeColor = tag.FontColor;
+                    tmi.Tag = tag;
+                    tmi.Checked = pin.Tags.Contains(tag.Name);
+                    tmi.CheckOnClick = true;
+                    tmi.CheckedChanged += Tmi_CheckedChanged;
+                    tagsToolStripMenuItem.DropDownItems.Add(tmi);
+
                 }
                 TransferMenuItems(itemContextItems, contextMenuStrip1.Items);
             }

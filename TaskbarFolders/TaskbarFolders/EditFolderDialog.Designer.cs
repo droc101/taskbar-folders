@@ -51,12 +51,12 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.aeroListView1 = new AeroSuite.Controls.AeroListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button7 = new System.Windows.Forms.Button();
             this.bottomPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -245,6 +245,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(444, 79);
             this.panel2.TabIndex = 15;
+            this.panel2.Visible = false;
             // 
             // radioButton5
             // 
@@ -287,6 +288,7 @@
             this.label1.Size = new System.Drawing.Size(71, 13);
             this.label1.TabIndex = 14;
             this.label1.Text = "Display Mode";
+            this.label1.Visible = false;
             // 
             // tabPage2
             // 
@@ -301,6 +303,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tags";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(184, 352);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(87, 23);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "Edit Tag";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -347,16 +359,6 @@
             // 
             this.columnHeader2.Text = "Color";
             this.columnHeader2.Width = 82;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(184, 352);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(87, 23);
-            this.button7.TabIndex = 3;
-            this.button7.Text = "Edit Tag";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // EditFolderDialog
             // 

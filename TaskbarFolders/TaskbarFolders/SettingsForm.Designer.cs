@@ -29,6 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "AeroSuite",
+            "Stefan Baumann"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Costura.Fody",
+            "geertvanhorrik,simoncropp"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Fody",
+            "Fody"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Newtonsoft.Json",
+            "James Newton-King"}, -1);
             this.bottomPanel1 = new AeroSuite.Controls.BottomPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
@@ -43,17 +55,22 @@
             this.aeroLinkLabel1 = new AeroSuite.Controls.AeroLinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.aeroListView1 = new AeroSuite.Controls.AeroListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bottomPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // bottomPanel1
             // 
             this.bottomPanel1.Controls.Add(this.tableLayoutPanel1);
             this.bottomPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bottomPanel1.Location = new System.Drawing.Point(0, 168);
+            this.bottomPanel1.Location = new System.Drawing.Point(0, 270);
             this.bottomPanel1.Margin = new System.Windows.Forms.Padding(5);
             this.bottomPanel1.Name = "bottomPanel1";
             this.bottomPanel1.Size = new System.Drawing.Size(471, 40);
@@ -126,7 +143,7 @@
             this.groupBox1.Controls.Add(this.aeroLinkLabel1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(86, 40);
+            this.groupBox1.Location = new System.Drawing.Point(86, 30);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(373, 120);
             this.groupBox1.TabIndex = 18;
@@ -195,11 +212,57 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "TaskbarFolders";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.aeroListView1);
+            this.groupBox2.Location = new System.Drawing.Point(86, 156);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(373, 108);
+            this.groupBox2.TabIndex = 19;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Third Party Libraries";
+            // 
+            // aeroListView1
+            // 
+            this.aeroListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.aeroListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.aeroListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.aeroListView1.FullRowSelect = true;
+            this.aeroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.aeroListView1.HideSelection = false;
+            this.aeroListView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4});
+            this.aeroListView1.Location = new System.Drawing.Point(3, 16);
+            this.aeroListView1.MultiSelect = false;
+            this.aeroListView1.Name = "aeroListView1";
+            this.aeroListView1.Size = new System.Drawing.Size(367, 89);
+            this.aeroListView1.TabIndex = 0;
+            this.aeroListView1.UseCompatibleStateImageBehavior = false;
+            this.aeroListView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Name";
+            this.columnHeader1.Width = 192;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Developer";
+            this.columnHeader2.Width = 150;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 208);
+            this.ClientSize = new System.Drawing.Size(471, 310);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.bottomPanel1);
             this.Controls.Add(this.pictureBox1);
@@ -217,6 +280,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,5 +302,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private AeroSuite.Controls.AeroListView aeroListView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }
