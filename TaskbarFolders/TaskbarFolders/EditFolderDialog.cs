@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListViewItem;
+using static TaskbarFolders.Program;
 
 namespace TaskbarFolders
 {
     public partial class EditFolderDialog : Form
     {
 
-        public Program.Settings settings;
+        public Program.Folder settings;
 
-        public EditFolderDialog(Program.Settings settings)
+        public EditFolderDialog(Program.Folder settings)
         {
             InitializeComponent();
             this.settings= settings;
@@ -18,7 +20,23 @@ namespace TaskbarFolders
             radioButton1.Checked = !settings.useColor;
             radioButton2.Checked = settings.useColor;
             panel1.BackColor = settings.color;
+            UpdateTagLV();
             UpdateLooks();
+        }
+
+        void UpdateTagLV()
+        {
+            aeroListView1.Items.Clear();
+            foreach (Tag tag in settings.Tags)
+            {
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = tag.Name;
+                ListViewSubItem visi = new ListViewSubItem();
+                visi.Text = HexConverter(tag.FontColor);
+                lvi.ForeColor = tag.FontColor;
+                lvi.SubItems.Add(visi);
+                aeroListView1.Items.Add(lvi);
+            }
         }
 
         private void EditFolderDialog_Load(object sender, EventArgs e)
@@ -37,6 +55,14 @@ namespace TaskbarFolders
             settings.ImagePath = cueTextBox2.Text;
             settings.color = panel1.BackColor;
             settings.useColor = radioButton2.Checked;
+            settings.Tags.Clear();
+            foreach (ListViewItem lvi in aeroListView1.Items)
+            {
+                Tag tag = new Tag();
+                tag.Name = lvi.Text;
+                tag.FontColor = lvi.ForeColor;
+                settings.Tags.Add(tag);
+            }
             DialogResult= DialogResult.OK;
             
         }
@@ -77,6 +103,50 @@ namespace TaskbarFolders
             {
                 cueTextBox2.Text = openFileDialog1.FileName;
             }
+        }
+
+        private static String HexConverter(System.Drawing.Color c)
+        {
+            return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Tag tag = new Tag();
+            tag.Name = "New Tag";
+            tag.FontColor = SystemColors.WindowText;
+            TagEditDialog ted = new TagEditDialog(tag);
+            if (ted.ShowDialog() == DialogResult.OK)
+            {
+                settings.Tags.Add(ted.tag);
+                UpdateTagLV();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (aeroListView1.SelectedItems.Count > 0)
+            {
+                aeroListView1.Items.RemoveAt(aeroListView1.SelectedIndices[0]);
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (aeroListView1.SelectedItems.Count > 0)
+            {
+                int index = aeroListView1.SelectedIndices[0];
+                Tag tag = new Tag();
+                tag.Name = aeroListView1.Items[index].Text;
+                tag.FontColor = aeroListView1.Items[index].ForeColor;
+                TagEditDialog ted = new TagEditDialog(tag);
+                if (ted.ShowDialog() == DialogResult.OK)
+                {
+                    aeroListView1.Items[index].Text = ted.tag.Name;
+                    aeroListView1.Items[index].ForeColor = ted.tag.FontColor;
+                }
+            }
+            
         }
     }
 }

@@ -33,9 +33,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.captionLabel1 = new AeroSuite.Controls.CaptionLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.cueTextBox1 = new AeroSuite.Controls.CueTextBox();
             this.cueTextBox2 = new AeroSuite.Controls.CueTextBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -45,16 +43,34 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.aeroListView1 = new AeroSuite.Controls.AeroListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button7 = new System.Windows.Forms.Button();
             this.bottomPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // bottomPanel1
             // 
             this.bottomPanel1.Controls.Add(this.tableLayoutPanel1);
             this.bottomPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bottomPanel1.Location = new System.Drawing.Point(0, 233);
+            this.bottomPanel1.Location = new System.Drawing.Point(0, 410);
             this.bottomPanel1.Margin = new System.Windows.Forms.Padding(5);
             this.bottomPanel1.Name = "bottomPanel1";
             this.bottomPanel1.Size = new System.Drawing.Size(471, 40);
@@ -79,6 +95,7 @@
             // 
             // button1
             // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.Location = new System.Drawing.Point(91, 8);
             this.button1.Name = "button1";
@@ -99,53 +116,35 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // captionLabel1
-            // 
-            this.captionLabel1.AutoSize = true;
-            this.captionLabel1.Location = new System.Drawing.Point(82, 12);
-            this.captionLabel1.Name = "captionLabel1";
-            this.captionLabel1.Size = new System.Drawing.Size(129, 21);
-            this.captionLabel1.TabIndex = 1;
-            this.captionLabel1.Text = "Folder Properties";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(8, 6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(83, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Folder Name";
-            // 
             // cueTextBox1
             // 
             this.cueTextBox1.Cue = "Type the folder name here";
-            this.cueTextBox1.Location = new System.Drawing.Point(86, 69);
+            this.cueTextBox1.Location = new System.Drawing.Point(62, 11);
             this.cueTextBox1.Name = "cueTextBox1";
-            this.cueTextBox1.Size = new System.Drawing.Size(373, 20);
+            this.cueTextBox1.Size = new System.Drawing.Size(395, 20);
             this.cueTextBox1.TabIndex = 4;
             // 
             // cueTextBox2
             // 
             this.cueTextBox2.Cue = "Image file path";
-            this.cueTextBox2.Location = new System.Drawing.Point(86, 123);
+            this.cueTextBox2.Location = new System.Drawing.Point(8, 88);
             this.cueTextBox2.Name = "cueTextBox2";
-            this.cueTextBox2.Size = new System.Drawing.Size(335, 20);
+            this.cueTextBox2.Size = new System.Drawing.Size(409, 20);
             this.cueTextBox2.TabIndex = 6;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(427, 123);
+            this.button3.Location = new System.Drawing.Point(423, 88);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(32, 20);
             this.button3.TabIndex = 7;
@@ -155,7 +154,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(427, 175);
+            this.button4.Location = new System.Drawing.Point(423, 140);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(32, 20);
             this.button4.TabIndex = 10;
@@ -166,7 +165,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(86, 100);
+            this.radioButton1.Location = new System.Drawing.Point(8, 65);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(78, 17);
             this.radioButton1.TabIndex = 11;
@@ -177,7 +176,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(86, 152);
+            this.radioButton2.Location = new System.Drawing.Point(8, 117);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(81, 17);
             this.radioButton2.TabIndex = 12;
@@ -189,9 +188,9 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Location = new System.Drawing.Point(86, 175);
+            this.panel1.Location = new System.Drawing.Point(8, 140);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(335, 20);
+            this.panel1.Size = new System.Drawing.Size(409, 20);
             this.panel1.TabIndex = 13;
             // 
             // openFileDialog1
@@ -206,23 +205,167 @@
             this.colorDialog1.FullOpen = true;
             this.colorDialog1.SolidColorOnly = true;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(471, 410);
+            this.tabControl1.TabIndex = 14;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.pictureBox1);
+            this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Controls.Add(this.cueTextBox1);
+            this.tabPage1.Controls.Add(this.radioButton2);
+            this.tabPage1.Controls.Add(this.cueTextBox2);
+            this.tabPage1.Controls.Add(this.radioButton1);
+            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(463, 381);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "General";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.radioButton5);
+            this.panel2.Controls.Add(this.radioButton4);
+            this.panel2.Controls.Add(this.radioButton3);
+            this.panel2.Location = new System.Drawing.Point(11, 197);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(444, 79);
+            this.panel2.TabIndex = 15;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(3, 49);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(90, 17);
+            this.radioButton5.TabIndex = 2;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Group by Tag";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(3, 26);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(95, 17);
+            this.radioButton4.TabIndex = 1;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Group by Type";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(3, 3);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(41, 17);
+            this.radioButton3.TabIndex = 0;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "List";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 181);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Display Mode";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.button7);
+            this.tabPage2.Controls.Add(this.button6);
+            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.aeroListView1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(463, 381);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Tags";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(277, 352);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(87, 23);
+            this.button6.TabIndex = 2;
+            this.button6.Text = "Add Tag";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(370, 352);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(87, 23);
+            this.button5.TabIndex = 1;
+            this.button5.Text = "Remove Tag";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // aeroListView1
+            // 
+            this.aeroListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.aeroListView1.FullRowSelect = true;
+            this.aeroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.aeroListView1.HideSelection = false;
+            this.aeroListView1.Location = new System.Drawing.Point(8, 6);
+            this.aeroListView1.MultiSelect = false;
+            this.aeroListView1.Name = "aeroListView1";
+            this.aeroListView1.Size = new System.Drawing.Size(447, 340);
+            this.aeroListView1.TabIndex = 0;
+            this.aeroListView1.UseCompatibleStateImageBehavior = false;
+            this.aeroListView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Name";
+            this.columnHeader1.Width = 215;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Color";
+            this.columnHeader2.Width = 82;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(184, 352);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(87, 23);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "Edit Tag";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // EditFolderDialog
             // 
             this.AcceptButton = this.button2;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button1;
-            this.ClientSize = new System.Drawing.Size(471, 273);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.cueTextBox2);
-            this.Controls.Add(this.cueTextBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.captionLabel1);
+            this.ClientSize = new System.Drawing.Size(471, 450);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.bottomPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -235,17 +378,20 @@
             this.bottomPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private AeroSuite.Controls.BottomPanel bottomPanel1;
-        private AeroSuite.Controls.CaptionLabel captionLabel1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
         private AeroSuite.Controls.CueTextBox cueTextBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button button1;
@@ -258,5 +404,19 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.Label label1;
+        private AeroSuite.Controls.AeroListView aeroListView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button7;
     }
 }

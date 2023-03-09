@@ -37,5 +37,10 @@ namespace TaskbarFolders
         {
             label4.Text = Application.ProductVersion.ToString();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

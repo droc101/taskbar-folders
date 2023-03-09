@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
+using System.Net.NetworkInformation;
 
 namespace TaskbarFolders
 {
@@ -14,24 +15,22 @@ namespace TaskbarFolders
         public Form1()
         {
             InitializeComponent();
-            AddPinnedItem(@"C:\Windows\system32\cmd.exe");
-            AddPinnedItem(@"C:\Windows\system32\notepad.exe");
-            AddPinnedItem(@"C:\Windows\system32\taskmgr.exe");
         }
 
         List<ToolStripItem> folderContextItems;
         List<ToolStripItem> fileContextItems;
         List<ToolStripItem> mainContextItems;
+        List<ToolStripItem> itemContextItems;
 
-        Program.Settings settings;
+        Program.Folder settings;
         int settingsIndex;
 
-        public Form1(Program.Settings settings, int settingsIndex)
+        public Form1(Program.Folder settings, int settingsIndex)
         {
             InitializeComponent();
             
             Round.RoundWindow(this);
-            foreach (string pin in settings.Pins)
+            foreach (Program.Pin pin in settings.Pins)
             {
                 AddPinnedItem(pin);
             }
@@ -42,7 +41,7 @@ namespace TaskbarFolders
             fileContextItems = TransferMenuItems(fileContextMenu.Items);
             folderContextItems = TransferMenuItems(folderContextMenu.Items);
             mainContextItems= TransferMenuItems(mainContextMenu.Items);
-            
+            itemContextItems = TransferMenuItems(itemContextMenu.Items);
         }
 
         void UpdateLooks()
@@ -59,24 +58,33 @@ namespace TaskbarFolders
             }
         }
 
-        string GetItemDesc(string filePath)
+        string GetItemDesc(Program.Pin pin)
         {
-            if (Directory.Exists(filePath))
+            if (Directory.Exists(pin.Path))
             {
-                return new DirectoryInfo(filePath).Name;
+                return new DirectoryInfo(pin.Path).Name;
             }
-            FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(filePath);
+            FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(pin.Path);
             string desc = myFileVersionInfo.FileDescription;
             if (String.IsNullOrEmpty(desc))
             {
-                desc = new FileInfo(filePath).Name;
+                desc = new FileInfo(pin.Path).Name;
             }
             return desc;
         }
 
-        public void AddPinnedItem(string filePath)
+        public void AddPinnedItem(string Path)
         {
-            string desc = GetItemDesc(filePath);
+            Program.Pin pin = new Program.Pin();
+            pin.Path = Path;
+            pin.Tags = new List<string>();
+            AddPinnedItem(pin);
+        }
+
+        public void AddPinnedItem(Program.Pin pin)
+        {
+            string filePath = pin.Path;
+            string desc = GetItemDesc(pin);
             ListViewItem lvi = new ListViewItem();
             lvi.Text = desc;
             Image bmp = IconUtils.GetLargestIcon(filePath);
@@ -114,7 +122,7 @@ namespace TaskbarFolders
 
         void SavePins()
         {
-            Program.currentSettings[settingsIndex] = settings;
+            Program.currentSettings.Folders[settingsIndex] = settings;
             Program.SaveSettings();
         }
 
@@ -142,7 +150,7 @@ namespace TaskbarFolders
         private void cueTextBox1_TextChanged(object sender, EventArgs e)
         {
             aeroListView1.Items.Clear();
-            foreach (string pin in settings.Pins)
+            foreach (Program.Pin pin in settings.Pins)
             {
                 if (GetItemDesc(pin).ToLower().Contains(cueTextBox1.Text.ToLower()) || String.IsNullOrEmpty(cueTextBox1.Text))
                 {
@@ -251,6 +259,7 @@ namespace TaskbarFolders
                 {
                     TransferMenuItems(fileContextItems, contextMenuStrip1.Items);
                 }
+                TransferMenuItems(itemContextItems, contextMenuStrip1.Items);
             }
             TransferMenuItems(mainContextItems, contextMenuStrip1.Items);
         }
@@ -263,26 +272,43 @@ namespace TaskbarFolders
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (settings.Pins.Contains(openFileDialog1.FileName))
+                if (IsPinned(openFileDialog1.FileName))
                 {
                     MessageBox.Show("This item is already pinned.", "Can't pin", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
                 }
                 AddPinnedItem(openFileDialog1.FileName);
-                settings.Pins.Add(openFileDialog1.FileName);
+                settings.Pins.Add(CreateDefaultPin(openFileDialog1.FileName));
                 SavePins();
             }
+        }
+
+        Program.Pin CreateDefaultPin(string path)
+        {
+            Program.Pin pin = new Program.Pin();
+            pin.Path = path;
+            pin.Tags = new List<string>();
+            return pin;
+        }
+
+        bool IsPinned(string path)
+        {
+            foreach (Program.Pin pin in settings.Pins)
+            {
+                if (pin.Path == path) return true;
+            }
+            return false;
         }
 
         private void addFolderToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (settings.Pins.Contains(openFileDialog1.FileName))
+                if (IsPinned(folderBrowserDialog1.SelectedPath))
                 {
                     MessageBox.Show("This item is already pinned.", "Can't pin", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
                 }
                 AddPinnedItem(folderBrowserDialog1.SelectedPath);
-                settings.Pins.Add(folderBrowserDialog1.SelectedPath);
+                settings.Pins.Add(CreateDefaultPin(folderBrowserDialog1.SelectedPath));
                 SavePins();
             }
         }
@@ -300,19 +326,19 @@ namespace TaskbarFolders
 
         private void addTaskbarFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Program.Settings newf = new Program.Settings();
+            Program.Folder newf = new Program.Folder();
             newf.Name = "New Folder";
-            newf.Pins = new List<string>();
+            newf.Pins = new List<Program.Pin>();
             newf.ImagePath = "";
             newf.color = Color.FromArgb(0, 120, 212);
             newf.useColor = true;
-            Program.currentSettings.Add(newf);
-            int idx = Program.currentSettings.IndexOf(newf);
-            Program.currentSettings.Remove(newf);
+            Program.currentSettings.Folders.Add(newf);
+            int idx = Program.currentSettings.Folders.IndexOf(newf);
+            Program.currentSettings.Folders.Remove(newf);
             EditFolderDialog efd = new EditFolderDialog(newf);
             if (efd.ShowDialog() == DialogResult.OK)
             {
-                Program.currentSettings.Add(efd.settings);
+                Program.currentSettings.Folders.Add(efd.settings);
                 new Form1(efd.settings, idx).Show();
                 Program.SaveSettings();
             }
@@ -320,13 +346,13 @@ namespace TaskbarFolders
 
         private void deleteTaskbarFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Program.currentSettings.Count == 1)
+            if (Program.currentSettings.Folders.Count == 1)
             {
                 MessageBox.Show("You can't delete the only folder.", "Can't delete", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
             }
             else
             {
-                Program.currentSettings.RemoveAt(settingsIndex);
+                Program.currentSettings.Folders.RemoveAt(settingsIndex);
                 Program.SaveSettings();
                 Close();
             }
@@ -339,9 +365,21 @@ namespace TaskbarFolders
             Process.GetCurrentProcess().Kill();
         }
 
+        int FindPinIndex(string pin)
+        {
+            for (int i = 0; i < settings.Pins.Count; i++)
+            {
+                if (settings.Pins[i].Path == pin)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         private void removeItemToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            int pinIndex = settings.Pins.IndexOf(aeroListView1.SelectedItems[0].ImageKey);
+            int pinIndex = FindPinIndex(aeroListView1.SelectedItems[0].ImageKey);
             settings.Pins.RemoveAt(pinIndex);
             aeroListView1.Items.RemoveAt(pinIndex);
             SavePins();
@@ -349,7 +387,7 @@ namespace TaskbarFolders
 
         private void removeItemToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            int pinIndex = settings.Pins.IndexOf(aeroListView1.SelectedItems[0].ImageKey);
+            int pinIndex = FindPinIndex(aeroListView1.SelectedItems[0].ImageKey);
             settings.Pins.RemoveAt(pinIndex);
             aeroListView1.Items.RemoveAt(pinIndex);
             SavePins();
@@ -388,6 +426,19 @@ namespace TaskbarFolders
         private void programSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new SettingsForm().ShowDialog();
+        }
+
+        private void removeItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int pinIndex = FindPinIndex(aeroListView1.SelectedItems[0].ImageKey);
+            settings.Pins.RemoveAt(pinIndex);
+            aeroListView1.Items.RemoveAt(pinIndex);
+            SavePins();
+        }
+
+        private void toolStripSeparator7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
