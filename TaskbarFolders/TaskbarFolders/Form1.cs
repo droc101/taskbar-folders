@@ -328,7 +328,6 @@ namespace TaskbarFolders
                         tmi.CheckOnClick = true;
                         tmi.CheckedChanged += Tmi_CheckedChanged;
                         tagsToolStripMenuItem.DropDownItems.Add(tmi);
-
                     }
                 }
                 

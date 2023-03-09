@@ -36,7 +36,6 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.cueTextBox1 = new AeroSuite.Controls.CueTextBox();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.mainContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,6 +61,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.removeItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.folderBrowserDialog1 = new Ookii.Dialogs.WinForms.VistaFolderBrowserDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.mainContextMenu.SuspendLayout();
             this.folderContextMenu.SuspendLayout();
@@ -133,10 +133,6 @@
             this.cueTextBox1.TabIndex = 1;
             this.cueTextBox1.TextChanged += new System.EventHandler(this.cueTextBox1_TextChanged);
             this.cueTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cueTextBox1_KeyDown);
-            // 
-            // folderBrowserDialog1
-            // 
-            this.folderBrowserDialog1.Description = "Select a folder to add";
             // 
             // tableLayoutPanel1
             // 
@@ -372,7 +368,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private AeroSuite.Controls.CueTextBox cueTextBox1;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ContextMenuStrip mainContextMenu;
         private System.Windows.Forms.ToolStripMenuItem addFileToolStripMenuItem;
@@ -398,6 +393,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem removeItemToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private Ookii.Dialogs.WinForms.VistaFolderBrowserDialog folderBrowserDialog1;
     }
 }
 

@@ -41,6 +41,9 @@
             System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "Newtonsoft.Json",
             "James Newton-King"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Ookii.Dialogs.WinForms",
+            "Ookii Dialogs Contributors"}, -1);
             this.bottomPanel1 = new AeroSuite.Controls.BottomPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
@@ -238,7 +241,8 @@
             listViewItem1,
             listViewItem2,
             listViewItem3,
-            listViewItem4});
+            listViewItem4,
+            listViewItem5});
             this.aeroListView1.Location = new System.Drawing.Point(3, 16);
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
