@@ -560,5 +560,20 @@ namespace TaskbarFolders
         {
 
         }
+
+        private void addProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartMenuProgramDialog pd = new StartMenuProgramDialog();
+            if (pd.ShowDialog() == DialogResult.OK)
+            {
+                if (IsPinned(pd.path))
+                {
+                    MessageBox.Show("This item is already pinned.", "Can't pin", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                }
+                AddPinnedItem(pd.path);
+                settings.Pins.Add(CreateDefaultPin(pd.path));
+                SavePins();
+            }
+        }
     }
 }

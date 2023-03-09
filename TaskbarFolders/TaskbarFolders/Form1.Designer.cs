@@ -38,6 +38,7 @@
             this.cueTextBox1 = new AeroSuite.Controls.CueTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.mainContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addFolderToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -86,7 +87,7 @@
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
             this.aeroListView1.ShowItemToolTips = true;
-            this.aeroListView1.Size = new System.Drawing.Size(264, 110);
+            this.aeroListView1.Size = new System.Drawing.Size(256, 102);
             this.aeroListView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.aeroListView1.TabIndex = 0;
             this.aeroListView1.UseCompatibleStateImageBehavior = false;
@@ -132,7 +133,7 @@
             this.cueTextBox1.Location = new System.Drawing.Point(8, 3);
             this.cueTextBox1.MinimumSize = new System.Drawing.Size(0, 22);
             this.cueTextBox1.Name = "cueTextBox1";
-            this.cueTextBox1.Size = new System.Drawing.Size(248, 22);
+            this.cueTextBox1.Size = new System.Drawing.Size(240, 22);
             this.cueTextBox1.TabIndex = 1;
             this.cueTextBox1.TextChanged += new System.EventHandler(this.cueTextBox1_TextChanged);
             this.cueTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cueTextBox1_KeyDown);
@@ -150,12 +151,13 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(264, 26);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(256, 26);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // mainContextMenu
             // 
             this.mainContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addProgramToolStripMenuItem,
             this.addFileToolStripMenuItem,
             this.addFolderToolStripMenuItem1,
             this.toolStripSeparator4,
@@ -167,7 +169,15 @@
             this.toolStripSeparator12,
             this.exitProgramToolStripMenuItem1});
             this.mainContextMenu.Name = "mainContextMenu";
-            this.mainContextMenu.Size = new System.Drawing.Size(206, 176);
+            this.mainContextMenu.Size = new System.Drawing.Size(206, 198);
+            // 
+            // addProgramToolStripMenuItem
+            // 
+            this.addProgramToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addProgramToolStripMenuItem.Image")));
+            this.addProgramToolStripMenuItem.Name = "addProgramToolStripMenuItem";
+            this.addProgramToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.addProgramToolStripMenuItem.Text = "Add Program";
+            this.addProgramToolStripMenuItem.Click += new System.EventHandler(this.addProgramToolStripMenuItem_Click);
             // 
             // addFileToolStripMenuItem
             // 
@@ -360,7 +370,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(264, 136);
+            this.ClientSize = new System.Drawing.Size(256, 128);
             this.ControlBox = false;
             this.Controls.Add(this.aeroListView1);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -424,6 +434,7 @@
         private Ookii.Dialogs.WinForms.TaskDialog taskDialog1;
         private Ookii.Dialogs.WinForms.TaskDialogButton taskDialogButton1;
         private Ookii.Dialogs.WinForms.TaskDialogButton taskDialogButton2;
+        private System.Windows.Forms.ToolStripMenuItem addProgramToolStripMenuItem;
     }
 }
 
