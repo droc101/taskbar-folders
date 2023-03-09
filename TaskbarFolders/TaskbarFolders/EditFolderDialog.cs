@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.ListViewItem;
 using static TaskbarFolders.Program;
@@ -22,6 +23,14 @@ namespace TaskbarFolders
             panel1.BackColor = settings.color;
             UpdateTagLV();
             UpdateLooks();
+            foreach (Extension ex in Program.extensions)
+            {
+                TabPage exp = ex.PropertiesHandler();
+                if (exp != null)
+                {
+                    tabControl1.TabPages.Add(exp);
+                }
+            }
         }
 
         void UpdateTagLV()

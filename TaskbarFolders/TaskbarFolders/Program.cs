@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
+using System.Reflection;
+using System.Linq;
 
 namespace TaskbarFolders
 {
     public static class Program
     {
+
+        public static List<Extension> extensions = new List<Extension>();
 
         public struct Folder
         {
@@ -40,6 +44,8 @@ namespace TaskbarFolders
         public static GlobalSettings currentSettings;
 
         public static string SrttingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\TaskbarFoldersConfig.json";
+        public static string PluginsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\TaskbarFolderPlugins\";
+        static string PluginWarningText = "WARNING: Plugins are written in C# and can potentially be malicious. Please install plugins with care.";
 
         public static void LoadSettings()
         {
@@ -74,6 +80,15 @@ namespace TaskbarFolders
             
         }
 
+        static IEnumerable<Extension> GetAllExtensions()
+        {
+            return AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(assembly => assembly.GetTypes())
+                .Where(type => type.IsSubclassOf(typeof(Extension)))
+                .Select(type => Activator.CreateInstance(type) as Extension);
+        }
+        
+
         public static void SaveSettings()
         {
             string ss = Newtonsoft.Json.JsonConvert.SerializeObject(currentSettings);
@@ -86,6 +101,23 @@ namespace TaskbarFolders
         [STAThread]
         static void Main()
         {
+            if (!Directory.Exists(PluginsPath))
+            {
+                Directory.CreateDirectory(PluginsPath);
+                File.WriteAllText(PluginsPath + "README.txt", PluginWarningText);
+            }
+            foreach (string Plugin in Directory.EnumerateFiles(PluginsPath))
+            {
+                if (Plugin.EndsWith(".dll"))
+                {
+                    Assembly.LoadFile(Plugin);
+                }
+                
+            }
+            GetAllExtensions().ToList().ForEach(x =>
+            {
+                extensions.Add(x);
+            });
             LoadSettings();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

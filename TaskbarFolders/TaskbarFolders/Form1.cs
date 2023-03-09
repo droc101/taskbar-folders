@@ -40,6 +40,10 @@ namespace TaskbarFolders
             folderContextItems = TransferMenuItems(folderContextMenu.Items);
             mainContextItems= TransferMenuItems(mainContextMenu.Items);
             itemContextItems = TransferMenuItems(itemContextMenu.Items);
+            foreach (Extension ex in Program.extensions)
+            {
+                ex.OnFolderLoad(this);
+            }
         }
 
         void UpdateLooks()
@@ -132,6 +136,10 @@ namespace TaskbarFolders
 
                 }
                 
+            }
+            foreach (Extension ex in Program.extensions)
+            {
+                ex.ItemHandler(lvi);
             }
             aeroListView1.Items.Add(lvi);
         }
@@ -321,10 +329,18 @@ namespace TaskbarFolders
                 if (Directory.Exists(aeroListView1.SelectedItems[0].ImageKey))
                 {
                     TransferMenuItems(folderContextItems, contextMenuStrip1.Items);
+                    foreach (Extension ex in Program.extensions)
+                    {
+                        TransferMenuItems(ex.FolderMenuHandler().ToList(), contextMenuStrip1.Items);
+                    }
                 }
                 else
                 {
                     TransferMenuItems(fileContextItems, contextMenuStrip1.Items);
+                    foreach (Extension ex in Program.extensions)
+                    {
+                        TransferMenuItems(ex.FileMenuHandler().ToList(), contextMenuStrip1.Items);
+                    }
                 }
                 tagsToolStripMenuItem.DropDownItems.Clear();
                 if (settings.Tags.Count == 0)
@@ -351,6 +367,14 @@ namespace TaskbarFolders
                 }
                 
                 TransferMenuItems(itemContextItems, contextMenuStrip1.Items);
+                foreach (Extension ex in Program.extensions)
+                {
+                    TransferMenuItems(ex.ItemMenuHandler().ToList(), contextMenuStrip1.Items);
+                }
+            }
+            foreach (Extension ex in Program.extensions)
+            {
+                TransferMenuItems(ex.MainMenuHandler().ToList(), contextMenuStrip1.Items);
             }
             TransferMenuItems(mainContextItems, contextMenuStrip1.Items);
         }
