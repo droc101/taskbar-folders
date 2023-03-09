@@ -387,6 +387,7 @@ namespace TaskbarFolders
             Program.Folder newf = new Program.Folder();
             newf.Name = "New Folder";
             newf.Pins = new List<Program.Pin>();
+            newf.Tags = new List<Tag>();
             newf.ImagePath = "";
             newf.color = Color.FromArgb(0, 120, 212);
             newf.useColor = true;
