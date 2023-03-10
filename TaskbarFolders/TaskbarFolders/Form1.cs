@@ -268,6 +268,7 @@ namespace TaskbarFolders
                     {
                         TransferMenuItems(ex.FolderMenuHandler().ToList(), CMS.Items);
                     }
+                    AddMenuSeperator(CMS.Items);
                 }
                 else
                 {
@@ -276,6 +277,7 @@ namespace TaskbarFolders
                     {
                         TransferMenuItems(ex.FileMenuHandler().ToList(), CMS.Items);
                     }
+                    AddMenuSeperator(CMS.Items);
                 }
                 tagsToolStripMenuItem.DropDownItems.Clear();
                 if (settings.Tags.Count == 0)
@@ -307,6 +309,7 @@ namespace TaskbarFolders
                 {
                     TransferMenuItems(ex.ItemMenuHandler().ToList(), CMS.Items);
                 }
+                AddMenuSeperator(CMS.Items);
             }
             foreach (Extension ex in Program.extensions)
             {
@@ -314,6 +317,7 @@ namespace TaskbarFolders
             }
             TransferMenuItems(mainContextItems, CMS.Items);
             CMS.AutoClose = true;
+
             CMS.Show(Cursor.Position);
         }
 
@@ -439,6 +443,11 @@ namespace TaskbarFolders
             return tempList;
         }
 
+        void AddMenuSeperator(ToolStripItemCollection to)
+        {
+            ToolStripSeparator sep = new ToolStripSeparator();
+            to.Add(sep);
+        }
         private void addFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
