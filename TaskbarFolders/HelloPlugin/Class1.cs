@@ -1,9 +1,11 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 using TaskbarFolders;
 
 namespace HelloPlugin
 {
+    // Example of all event handlers
     public class HelloPlugin : TaskbarFolders.Extension
     {
         // Handler to add items to the global context menu
@@ -11,7 +13,10 @@ namespace HelloPlugin
         {
             ToolStripMenuItem mi = new ToolStripMenuItem();
             mi.Text = "Main Menu Entry";
-            mi.Click += Mi_Click;
+            mi.Click += delegate
+            {
+                MessageBox.Show("Main Menu Click");
+            };
             return new ToolStripItem[] { mi };
         }
 
@@ -20,7 +25,10 @@ namespace HelloPlugin
         {
             ToolStripMenuItem mi = new ToolStripMenuItem();
             mi.Text = "File Menu Entry";
-            mi.Click += Mi_Click;
+            mi.Click += delegate
+            {
+                MessageBox.Show("File Menu Click");
+            };
             return new ToolStripItem[] { mi };
         }
 
@@ -29,7 +37,10 @@ namespace HelloPlugin
         {
             ToolStripMenuItem mi = new ToolStripMenuItem();
             mi.Text = "Folder menu Entry";
-            mi.Click += Mi_Click;
+            mi.Click += delegate
+            {
+                MessageBox.Show("Folder Menu Click");
+            };
             return new ToolStripItem[] { mi };
         }
 
@@ -44,7 +55,10 @@ namespace HelloPlugin
         {
             ToolStripMenuItem mi = new ToolStripMenuItem();
             mi.Text = "Item menu Entry";
-            mi.Click += Mi_Click;
+            mi.Click += delegate
+            {
+                MessageBox.Show("Item Menu Click");
+            };
             return new ToolStripItem[] { mi };
         }
 
@@ -74,10 +88,10 @@ namespace HelloPlugin
             return tp;
         }
 
-        // Menu Item Click. Not part of plugin API.
-        private void Mi_Click(object sender, System.EventArgs e)
+        // Plugin Start handler
+        public override void OnPluginStart()
         {
-            MessageBox.Show("Hello from the example plugin!");
+            Debug.WriteLine("HelloPlugin loaded!");
         }
     }
 }

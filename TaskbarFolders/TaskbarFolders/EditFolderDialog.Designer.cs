@@ -56,6 +56,7 @@
             this.sortNone = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -70,6 +71,7 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // bottomPanel1
@@ -143,6 +145,8 @@
             // 
             // cueTextBox2
             // 
+            this.cueTextBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cueTextBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
             this.cueTextBox2.Cue = "Image file path";
             this.cueTextBox2.Location = new System.Drawing.Point(6, 132);
             this.cueTextBox2.Name = "cueTextBox2";
@@ -358,21 +362,32 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button7);
-            this.tabPage2.Controls.Add(this.button6);
-            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.flowLayoutPanel3);
             this.tabPage2.Controls.Add(this.aeroListView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(8);
             this.tabPage2.Size = new System.Drawing.Size(463, 378);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tags";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.button7);
+            this.flowLayoutPanel3.Controls.Add(this.button6);
+            this.flowLayoutPanel3.Controls.Add(this.button5);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(8, 339);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(447, 31);
+            this.flowLayoutPanel3.TabIndex = 4;
+            // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(184, 352);
+            this.button7.Location = new System.Drawing.Point(357, 3);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(87, 23);
             this.button7.TabIndex = 3;
@@ -382,7 +397,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(277, 352);
+            this.button6.Location = new System.Drawing.Point(264, 3);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(87, 23);
             this.button6.TabIndex = 2;
@@ -392,7 +407,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(370, 352);
+            this.button5.Location = new System.Drawing.Point(171, 3);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(87, 23);
             this.button5.TabIndex = 1;
@@ -402,17 +417,19 @@
             // 
             // aeroListView1
             // 
+            this.aeroListView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.aeroListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.aeroListView1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aeroListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.aeroListView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aeroListView1.FullRowSelect = true;
             this.aeroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.aeroListView1.HideSelection = false;
-            this.aeroListView1.Location = new System.Drawing.Point(8, 6);
+            this.aeroListView1.Location = new System.Drawing.Point(8, 8);
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
-            this.aeroListView1.Size = new System.Drawing.Size(447, 340);
+            this.aeroListView1.Size = new System.Drawing.Size(447, 362);
             this.aeroListView1.TabIndex = 0;
             this.aeroListView1.UseCompatibleStateImageBehavior = false;
             this.aeroListView1.View = System.Windows.Forms.View.Details;
@@ -455,6 +472,7 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -494,5 +512,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
     }
 }

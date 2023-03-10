@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HelloPlugin")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("TaskbarFolders Example Plugins")]
+[assembly: AssemblyDescription("TaskbarFolders Example Plugins")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("droc101 development")]
-[assembly: AssemblyProduct("HelloPlugin")]
-[assembly: AssemblyCopyright("Copyright © droc101 development 2023")]
+[assembly: AssemblyCompany("Droc101")]
+[assembly: AssemblyProduct("TaskbarFolders Example Plugins")]
+[assembly: AssemblyCopyright("Copyright © Droc101 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
