@@ -31,6 +31,11 @@ namespace TaskbarFolders
             }
         }
 
+        public GlobalSettings upgradeV1OrNewer(GlobalSettings gs)
+        {
+            return gs; // TODO
+        }
+
         public GlobalSettings UpgradeV0toV1(List<SettingsV0> v0)
         {
             GlobalSettings currentSettings = new GlobalSettings();
@@ -45,6 +50,8 @@ namespace TaskbarFolders
                 folder.color= old_folder.color;
                 folder.useColor= old_folder.useColor;
                 folder.Tags = new List<Tag>();
+                folder.sortMode = System.Windows.Forms.SortOrder.Ascending;
+                folder.groupingMode = GroupingMode.NONE;
 
                 foreach (string oldPin in old_folder.Pins)
                 {

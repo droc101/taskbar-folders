@@ -7,6 +7,7 @@ using System.IO;
 using System.Net.NetworkInformation;
 using static TaskbarFolders.Program;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TaskbarFolders
 {
@@ -49,10 +50,30 @@ namespace TaskbarFolders
         void UpdateLooks()
         {
             cueTextBox1.Cue = "Search " + settings.Name + "...";
-            aeroListView1.Items.Clear();
-            foreach (Program.Pin pin in settings.Pins)
+            
+
+            aeroListView1.Sorting = settings.sortMode;
+            aeroListView1.Groups.Clear();
+            switch (settings.groupingMode)
             {
-                AddPinnedItem(pin);
+                case GroupingMode.NONE: break;
+                case GroupingMode.ITEM_TYPE:
+                    ListViewGroup ff_group = new ListViewGroup();
+                    ff_group.Header = "Files & Folders";
+                    ListViewGroup p_group = new ListViewGroup();
+                    p_group.Header = "Programs";
+                    aeroListView1.Groups.Add(ff_group);
+                    aeroListView1.Groups.Add(p_group);
+                    break;
+                case GroupingMode.TAG:
+                    foreach (Tag tag in settings.Tags)
+                    {
+                        ListViewGroup tag_group = new ListViewGroup();
+                        tag_group.Header = tag.Name;
+                        aeroListView1.Groups.Add(tag_group);
+                    }
+                    break;
+                default: break; // Treat as "None"
             }
 
             notifyIcon1.Text = settings.Name;
@@ -64,6 +85,12 @@ namespace TaskbarFolders
             else
             {
                 notifyIcon1.Icon = Icon.FromHandle(new Bitmap(settings.ImagePath).GetHicon());
+            }
+
+            aeroListView1.Items.Clear();
+            foreach (Program.Pin pin in settings.Pins)
+            {
+                AddPinnedItem(pin);
             }
         }
 
@@ -117,13 +144,43 @@ namespace TaskbarFolders
             Image bmp = IconUtils.GetLargestIcon(filePath);
             imageList1.Images.Add(filePath, bmp);
             lvi.ImageKey = filePath;
-            //if (filePath.EndsWith(".exe"))
-            //{
-            //    lvi.Group = aeroListView1.Groups[1];
-            //} else
-            //{
-            //    lvi.Group = aeroListView1.Groups[0];
-            //}
+            switch (settings.groupingMode)
+            {
+                case GroupingMode.NONE: break;
+                case GroupingMode.ITEM_TYPE:
+                    if (filePath.EndsWith(".exe"))
+                    {
+                        lvi.Group = aeroListView1.Groups[1];
+                    }
+                    else
+                    {
+                        lvi.Group = aeroListView1.Groups[0];
+                    }
+                    break;
+                case GroupingMode.TAG:
+                    foreach (ListViewGroup g in aeroListView1.Groups)
+                    {
+                        if (pin.Tags.Count > 0)
+                        {
+                            try
+                            {
+                                Tag t = findTag(pin.Tags.Last()).Value;
+                                if (g.Header == t.Name)
+                                {
+                                    lvi.Group = g;
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+
+                            }
+
+                        }
+                    }
+                    break;
+                default: break; // Treat as "None"
+            }
+            
             lvi.ToolTipText = desc;
             if (pin.Tags.Count > 0)
             {
@@ -197,7 +254,71 @@ namespace TaskbarFolders
                 Show();
                 Activate();
                 BringToFront();
+            } else if (e.Button == MouseButtons.Right)
+            {
+                SummonContextMenu();
             }
+        }
+
+        void SummonContextMenu()
+        {
+            ContextMenuStrip CMS = new ContextMenuStrip();
+            if (aeroListView1.SelectedItems.Count != 0 && Visible)
+            {
+                if (Directory.Exists(aeroListView1.SelectedItems[0].ImageKey))
+                {
+                    TransferMenuItems(folderContextItems, CMS.Items);
+                    foreach (Extension ex in Program.extensions)
+                    {
+                        TransferMenuItems(ex.FolderMenuHandler().ToList(), CMS.Items);
+                    }
+                }
+                else
+                {
+                    TransferMenuItems(fileContextItems, CMS.Items);
+                    foreach (Extension ex in Program.extensions)
+                    {
+                        TransferMenuItems(ex.FileMenuHandler().ToList(), CMS.Items);
+                    }
+                }
+                tagsToolStripMenuItem.DropDownItems.Clear();
+                if (settings.Tags.Count == 0)
+                {
+                    tagsToolStripMenuItem.Text = "No Tags";
+                    tagsToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    tagsToolStripMenuItem.Enabled = true;
+                    tagsToolStripMenuItem.Text = "&Tags";
+                    foreach (Tag tag in settings.Tags)
+                    {
+                        int idx = FindPinIndex(aeroListView1.SelectedItems[0].ImageKey);
+                        Pin pin = settings.Pins[idx];
+                        ToolStripMenuItem tmi = new ToolStripMenuItem();
+                        tmi.Text = tag.Name;
+                        tmi.ForeColor = tag.FontColor;
+                        tmi.Tag = tag;
+                        tmi.Checked = pin.Tags.Contains(tag.Name);
+                        tmi.CheckOnClick = true;
+                        tmi.CheckedChanged += Tmi_CheckedChanged;
+                        tagsToolStripMenuItem.DropDownItems.Add(tmi);
+                    }
+                }
+
+                TransferMenuItems(itemContextItems, CMS.Items);
+                foreach (Extension ex in Program.extensions)
+                {
+                    TransferMenuItems(ex.ItemMenuHandler().ToList(), CMS.Items);
+                }
+            }
+            foreach (Extension ex in Program.extensions)
+            {
+                TransferMenuItems(ex.MainMenuHandler().ToList(), CMS.Items);
+            }
+            TransferMenuItems(mainContextItems, CMS.Items);
+            CMS.AutoClose = true;
+            CMS.Show(Cursor.Position);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -324,60 +445,7 @@ namespace TaskbarFolders
 
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            contextMenuStrip1.Items.Clear();
-            if (aeroListView1.SelectedItems.Count != 0 && Visible)
-            {
-                if (Directory.Exists(aeroListView1.SelectedItems[0].ImageKey))
-                {
-                    TransferMenuItems(folderContextItems, contextMenuStrip1.Items);
-                    foreach (Extension ex in Program.extensions)
-                    {
-                        TransferMenuItems(ex.FolderMenuHandler().ToList(), contextMenuStrip1.Items);
-                    }
-                }
-                else
-                {
-                    TransferMenuItems(fileContextItems, contextMenuStrip1.Items);
-                    foreach (Extension ex in Program.extensions)
-                    {
-                        TransferMenuItems(ex.FileMenuHandler().ToList(), contextMenuStrip1.Items);
-                    }
-                }
-                tagsToolStripMenuItem.DropDownItems.Clear();
-                if (settings.Tags.Count == 0)
-                {
-                    tagsToolStripMenuItem.Text = "No Tags";
-                    tagsToolStripMenuItem.Enabled= false;
-                } else
-                {
-                    tagsToolStripMenuItem.Enabled= true;
-                    tagsToolStripMenuItem.Text = "&Tags";
-                    foreach (Tag tag in settings.Tags)
-                    {
-                        int idx = FindPinIndex(aeroListView1.SelectedItems[0].ImageKey);
-                        Pin pin = settings.Pins[idx];
-                        ToolStripMenuItem tmi = new ToolStripMenuItem();
-                        tmi.Text = tag.Name;
-                        tmi.ForeColor = tag.FontColor;
-                        tmi.Tag = tag;
-                        tmi.Checked = pin.Tags.Contains(tag.Name);
-                        tmi.CheckOnClick = true;
-                        tmi.CheckedChanged += Tmi_CheckedChanged;
-                        tagsToolStripMenuItem.DropDownItems.Add(tmi);
-                    }
-                }
-                
-                TransferMenuItems(itemContextItems, contextMenuStrip1.Items);
-                foreach (Extension ex in Program.extensions)
-                {
-                    TransferMenuItems(ex.ItemMenuHandler().ToList(), contextMenuStrip1.Items);
-                }
-            }
-            foreach (Extension ex in Program.extensions)
-            {
-                TransferMenuItems(ex.MainMenuHandler().ToList(), contextMenuStrip1.Items);
-            }
-            TransferMenuItems(mainContextItems, contextMenuStrip1.Items);
+            
         }
 
         private void contextMenuStrip1_Closing(object sender, ToolStripDropDownClosingEventArgs e)
@@ -442,13 +510,7 @@ namespace TaskbarFolders
 
         private void addTaskbarFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Program.Folder newf = new Program.Folder();
-            newf.Name = "New Folder";
-            newf.Pins = new List<Program.Pin>();
-            newf.Tags = new List<Tag>();
-            newf.ImagePath = "";
-            newf.color = Color.FromArgb(0, 120, 212);
-            newf.useColor = true;
+            Program.Folder newf = CreateDefaultFolder();
             Program.currentSettings.Folders.Add(newf);
             int idx = Program.currentSettings.Folders.IndexOf(newf);
             Program.currentSettings.Folders.Remove(newf);
@@ -463,16 +525,20 @@ namespace TaskbarFolders
 
         private void deleteTaskbarFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Program.currentSettings.Folders.Count == 1)
+            if (taskDialog2.ShowDialog().ButtonType == Ookii.Dialogs.WinForms.ButtonType.Ok)
             {
-                MessageBox.Show("You can't delete the only folder.", "Can't delete", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                if (Program.currentSettings.Folders.Count == 1)
+                {
+                    MessageBox.Show("You can't delete the only folder.", "Can't delete", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                }
+                else
+                {
+                    Program.currentSettings.Folders.RemoveAt(settingsIndex);
+                    Program.SaveSettings();
+                    Close();
+                }
             }
-            else
-            {
-                Program.currentSettings.Folders.RemoveAt(settingsIndex);
-                Program.SaveSettings();
-                Close();
-            }
+            
         }
 
         private void exitProgramToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -553,6 +619,7 @@ namespace TaskbarFolders
             int pinIndex = FindPinIndex(aeroListView1.SelectedItems[0].ImageKey);
             settings.Pins.RemoveAt(pinIndex);
             aeroListView1.Items.RemoveAt(pinIndex);
+            UpdateLooks();
             SavePins();
         }
 
@@ -573,6 +640,14 @@ namespace TaskbarFolders
                 AddPinnedItem(pd.path);
                 settings.Pins.Add(CreateDefaultPin(pd.path));
                 SavePins();
+            }
+        }
+
+        private void aeroListView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                SummonContextMenu();
             }
         }
     }

@@ -21,6 +21,15 @@ namespace TaskbarFolders
             public string ImagePath;
             public Color color;
             public bool useColor;
+            public GroupingMode groupingMode;
+            public SortOrder sortMode;
+        }
+
+        public enum GroupingMode
+        {
+            NONE,
+            ITEM_TYPE,
+            TAG
         }
 
         public struct GlobalSettings
@@ -66,18 +75,25 @@ namespace TaskbarFolders
                 currentSettings = new GlobalSettings();
                 currentSettings.Folders = new List<Folder> {};
                 currentSettings.DataVersion = 1;
-                var folder = new Folder();
-                folder.Pins = new List<Pin>();
+                var folder = CreateDefaultFolder();
                 folder.Name = "Main Folder";
-                folder.color = Color.FromArgb(0, 120, 212);
-                folder.useColor = true;
-                folder.ImagePath = "";
                 currentSettings.Folders.Add(folder);
                 SaveSettings();
                 Welcome welcome = new Welcome();
                 welcome.ShowDialog();
             }
             
+        }
+
+        public static Folder CreateDefaultFolder()
+        {
+            var folder = new Folder();
+            folder.Pins = new List<Pin>();
+            folder.Name = "New Folder";
+            folder.color = Color.FromArgb(0, 120, 212);
+            folder.useColor = true;
+            folder.ImagePath = "";
+            return folder;
         }
 
         static IEnumerable<Extension> GetAllExtensions()
@@ -121,6 +137,10 @@ namespace TaskbarFolders
             LoadSettings();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            foreach (Extension extension in extensions)
+            {
+                extension.OnPluginStart();
+            }
             int i = 0;
             foreach (Folder settings in currentSettings.Folders) { 
                 new Form1(settings, i).Show();

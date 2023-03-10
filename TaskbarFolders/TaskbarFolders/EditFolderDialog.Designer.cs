@@ -45,10 +45,13 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.sortNone = new System.Windows.Forms.RadioButton();
+            this.sortDec = new System.Windows.Forms.RadioButton();
+            this.sortAsc = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupingTag = new System.Windows.Forms.RadioButton();
+            this.groupingType = new System.Windows.Forms.RadioButton();
+            this.groupingNone = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button7 = new System.Windows.Forms.Button();
@@ -57,13 +60,16 @@
             this.aeroListView1 = new AeroSuite.Controls.AeroListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.bottomPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // bottomPanel1
@@ -119,7 +125,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(8, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -129,22 +135,23 @@
             // cueTextBox1
             // 
             this.cueTextBox1.Cue = "Type the folder name here";
-            this.cueTextBox1.Location = new System.Drawing.Point(62, 11);
+            this.cueTextBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cueTextBox1.Location = new System.Drawing.Point(62, 9);
             this.cueTextBox1.Name = "cueTextBox1";
-            this.cueTextBox1.Size = new System.Drawing.Size(395, 20);
+            this.cueTextBox1.Size = new System.Drawing.Size(395, 25);
             this.cueTextBox1.TabIndex = 4;
             // 
             // cueTextBox2
             // 
             this.cueTextBox2.Cue = "Image file path";
-            this.cueTextBox2.Location = new System.Drawing.Point(8, 88);
+            this.cueTextBox2.Location = new System.Drawing.Point(6, 132);
             this.cueTextBox2.Name = "cueTextBox2";
             this.cueTextBox2.Size = new System.Drawing.Size(409, 20);
             this.cueTextBox2.TabIndex = 6;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(423, 88);
+            this.button3.Location = new System.Drawing.Point(421, 132);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(32, 20);
             this.button3.TabIndex = 7;
@@ -154,7 +161,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(423, 140);
+            this.button4.Location = new System.Drawing.Point(421, 84);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(32, 20);
             this.button4.TabIndex = 10;
@@ -165,7 +172,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(8, 65);
+            this.radioButton1.Location = new System.Drawing.Point(6, 109);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(78, 17);
             this.radioButton1.TabIndex = 11;
@@ -176,7 +183,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(8, 117);
+            this.radioButton2.Location = new System.Drawing.Point(6, 61);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(81, 17);
             this.radioButton2.TabIndex = 12;
@@ -188,14 +195,14 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Location = new System.Drawing.Point(8, 140);
+            this.panel1.Location = new System.Drawing.Point(6, 84);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(409, 20);
             this.panel1.TabIndex = 13;
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.Filter = "PNG Image|*.png";
+            this.openFileDialog1.Filter = "PNG Image|*.png|JPG Files|*.jpg";
             this.openFileDialog1.Title = "Select Folder Icon";
             // 
             // colorDialog1
@@ -219,7 +226,9 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Controls.Add(this.flowLayoutPanel1);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.flowLayoutPanel2);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.panel1);
@@ -237,59 +246,87 @@
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // sortNone
             // 
-            this.panel2.Controls.Add(this.radioButton5);
-            this.panel2.Controls.Add(this.radioButton4);
-            this.panel2.Controls.Add(this.radioButton3);
-            this.panel2.Location = new System.Drawing.Point(11, 197);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(444, 79);
-            this.panel2.TabIndex = 15;
-            this.panel2.Visible = false;
+            this.sortNone.AutoSize = true;
+            this.sortNone.Location = new System.Drawing.Point(3, 49);
+            this.sortNone.Name = "sortNone";
+            this.sortNone.Size = new System.Drawing.Size(51, 17);
+            this.sortNone.TabIndex = 2;
+            this.sortNone.Text = "None";
+            this.sortNone.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // sortDec
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(3, 49);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(90, 17);
-            this.radioButton5.TabIndex = 2;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Group by Tag";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.sortDec.AutoSize = true;
+            this.sortDec.Location = new System.Drawing.Point(3, 26);
+            this.sortDec.Name = "sortDec";
+            this.sortDec.Size = new System.Drawing.Size(108, 17);
+            this.sortDec.TabIndex = 1;
+            this.sortDec.Text = "Descending (Z-A)";
+            this.sortDec.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // sortAsc
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(3, 26);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(95, 17);
-            this.radioButton4.TabIndex = 1;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Group by Type";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.sortAsc.AutoSize = true;
+            this.sortAsc.Checked = true;
+            this.sortAsc.Location = new System.Drawing.Point(3, 3);
+            this.sortAsc.Name = "sortAsc";
+            this.sortAsc.Size = new System.Drawing.Size(101, 17);
+            this.sortAsc.TabIndex = 0;
+            this.sortAsc.TabStop = true;
+            this.sortAsc.Text = "Ascending (A-Z)";
+            this.sortAsc.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // label2
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(3, 3);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(41, 17);
-            this.radioButton3.TabIndex = 0;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "List";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 272);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Sorting Mode";
+            // 
+            // groupingTag
+            // 
+            this.groupingTag.AutoSize = true;
+            this.groupingTag.Location = new System.Drawing.Point(3, 49);
+            this.groupingTag.Name = "groupingTag";
+            this.groupingTag.Size = new System.Drawing.Size(90, 17);
+            this.groupingTag.TabIndex = 2;
+            this.groupingTag.Text = "Group by Tag";
+            this.groupingTag.UseVisualStyleBackColor = true;
+            // 
+            // groupingType
+            // 
+            this.groupingType.AutoSize = true;
+            this.groupingType.Location = new System.Drawing.Point(3, 26);
+            this.groupingType.Name = "groupingType";
+            this.groupingType.Size = new System.Drawing.Size(95, 17);
+            this.groupingType.TabIndex = 1;
+            this.groupingType.Text = "Group by Type";
+            this.groupingType.UseVisualStyleBackColor = true;
+            // 
+            // groupingNone
+            // 
+            this.groupingNone.AutoSize = true;
+            this.groupingNone.Checked = true;
+            this.groupingNone.Location = new System.Drawing.Point(3, 3);
+            this.groupingNone.Name = "groupingNone";
+            this.groupingNone.Size = new System.Drawing.Size(51, 17);
+            this.groupingNone.TabIndex = 0;
+            this.groupingNone.TabStop = true;
+            this.groupingNone.Text = "None";
+            this.groupingNone.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(8, 181);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 14;
-            this.label1.Text = "Display Mode";
-            this.label1.Visible = false;
+            this.label1.Text = "Grouping";
             // 
             // tabPage2
             // 
@@ -340,6 +377,7 @@
             this.aeroListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
+            this.aeroListView1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aeroListView1.FullRowSelect = true;
             this.aeroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.aeroListView1.HideSelection = false;
@@ -360,6 +398,28 @@
             // 
             this.columnHeader2.Text = "Color";
             this.columnHeader2.Width = 82;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.groupingNone);
+            this.flowLayoutPanel1.Controls.Add(this.groupingType);
+            this.flowLayoutPanel1.Controls.Add(this.groupingTag);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(8, 197);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(445, 72);
+            this.flowLayoutPanel1.TabIndex = 18;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.sortAsc);
+            this.flowLayoutPanel2.Controls.Add(this.sortDec);
+            this.flowLayoutPanel2.Controls.Add(this.sortNone);
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(6, 288);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(447, 72);
+            this.flowLayoutPanel2.TabIndex = 19;
             // 
             // EditFolderDialog
             // 
@@ -384,9 +444,11 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -410,10 +472,9 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton groupingTag;
+        private System.Windows.Forms.RadioButton groupingType;
+        private System.Windows.Forms.RadioButton groupingNone;
         private System.Windows.Forms.Label label1;
         private AeroSuite.Controls.AeroListView aeroListView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -421,5 +482,11 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.RadioButton sortNone;
+        private System.Windows.Forms.RadioButton sortDec;
+        private System.Windows.Forms.RadioButton sortAsc;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }

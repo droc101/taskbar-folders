@@ -21,14 +21,21 @@ namespace TaskbarFolders
         public StartMenuProgramDialog()
         {
             InitializeComponent();
-            foreach (string program in GetPrograms(Environment.GetFolderPath(Environment.SpecialFolder.Programs)))
+            try
+            {
+                foreach (KeyValuePair<string, string> program in GetPrograms(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu)))
+                {
+                    AddPinnedItem(program);
+                }
+            } catch (Exception ex)
+            {
+
+            }
+            foreach (KeyValuePair<string, string> program in GetPrograms(Environment.GetFolderPath(Environment.SpecialFolder.Programs)))
             {
                 AddPinnedItem(program);
             }
-            foreach (string program in GetPrograms(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu)))
-            {
-                AddPinnedItem(program);
-            }
+            
         }
 
         string GetItemDesc(string filePath)
@@ -37,26 +44,47 @@ namespace TaskbarFolders
             string desc = myFileVersionInfo.FileDescription;
             if (String.IsNullOrEmpty(desc))
             {
-                desc = new FileInfo(filePath).Name;
+                desc = new FileInfo(filePath).Name.Replace(".lnk", "");
             }
             return desc;
         }
 
-        public void AddPinnedItem(string filePath)
+        public void AddPinnedItem(KeyValuePair<string,string> dict)
         {
-            string desc = GetItemDesc(filePath);
+            string desc = GetItemDesc(dict.Key);
             ListViewItem lvi = new ListViewItem();
             lvi.Text = desc;
-            Image bmp = IconUtils.GetLargestIcon(filePath);
-            imageList1.Images.Add(filePath, bmp);
-            lvi.ImageKey = filePath;
+            Image bmp = IconUtils.GetLargestIcon(dict.Key);
+            imageList1.Images.Add(dict.Key, bmp);
+            lvi.ImageKey = dict.Key;
             lvi.ToolTipText = desc;
             aeroListView1.Items.Add(lvi);
         }
 
-        List<string> GetPrograms(string path)
+        public Dictionary<string, string> MergeDictionaries(Dictionary<string, string> dict1, Dictionary<string, string> dict2)
         {
-            List<string> programs = new List<string>();
+            // Create a new dictionary to hold the merged key-value pairs
+            Dictionary<string, string> mergedDict = new Dictionary<string, string>();
+
+            // Add all key-value pairs from the first dictionary
+            foreach (KeyValuePair<string, string> kvp in dict1)
+            {
+                mergedDict.Add(kvp.Key, kvp.Value);
+            }
+
+            // Add all key-value pairs from the second dictionary, overwriting any duplicates
+            foreach (KeyValuePair<string, string> kvp in dict2)
+            {
+                mergedDict[kvp.Key] = kvp.Value;
+            }
+
+            return mergedDict;
+        }
+
+
+        Dictionary<string, string> GetPrograms(string path)
+        {
+            Dictionary<string, string> programs = new Dictionary<string, string>();
             foreach (string file in Directory.EnumerateFiles(path))
             {
                 if (file.EndsWith(".lnk"))
@@ -68,7 +96,7 @@ namespace TaskbarFolders
                         {
                             if (File.Exists(target))
                             {
-                                programs.Add(target);
+                                programs.Add(file, target);
                             }
                         }
                     }
@@ -76,7 +104,7 @@ namespace TaskbarFolders
             }
             foreach (string folder in Directory.EnumerateDirectories(path))
             {
-                programs.AddRange(GetPrograms(folder));
+                programs = MergeDictionaries(programs, GetPrograms(folder));
             }
             return programs;
         }

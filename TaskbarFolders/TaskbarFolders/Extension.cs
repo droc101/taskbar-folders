@@ -10,6 +10,11 @@ namespace TaskbarFolders
 
         }
 
+        public virtual void OnPluginStart()
+        {
+
+        }
+
         public virtual ToolStripItem[] MainMenuHandler() // Main context menu handler. Placed at the bottom.
         {
             return new ToolStripItem[] { };

@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.aeroListView1 = new AeroSuite.Controls.AeroListView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -66,6 +65,9 @@
             this.taskDialog1 = new Ookii.Dialogs.WinForms.TaskDialog(this.components);
             this.taskDialogButton1 = new Ookii.Dialogs.WinForms.TaskDialogButton(this.components);
             this.taskDialogButton2 = new Ookii.Dialogs.WinForms.TaskDialogButton(this.components);
+            this.taskDialog2 = new Ookii.Dialogs.WinForms.TaskDialog(this.components);
+            this.taskDialogButton3 = new Ookii.Dialogs.WinForms.TaskDialogButton(this.components);
+            this.taskDialogButton4 = new Ookii.Dialogs.WinForms.TaskDialogButton(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.mainContextMenu.SuspendLayout();
             this.folderContextMenu.SuspendLayout();
@@ -77,7 +79,6 @@
             // 
             this.aeroListView1.BackColor = System.Drawing.SystemColors.Window;
             this.aeroListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.aeroListView1.ContextMenuStrip = this.contextMenuStrip1;
             this.aeroListView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.aeroListView1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.aeroListView1.FullRowSelect = true;
@@ -87,21 +88,13 @@
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
             this.aeroListView1.ShowItemToolTips = true;
-            this.aeroListView1.Size = new System.Drawing.Size(256, 102);
+            this.aeroListView1.Size = new System.Drawing.Size(320, 166);
             this.aeroListView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.aeroListView1.TabIndex = 0;
             this.aeroListView1.UseCompatibleStateImageBehavior = false;
             this.aeroListView1.ItemActivate += new System.EventHandler(this.aeroListView1_ItemActivate);
             this.aeroListView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.aeroListView1_KeyDown);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            this.contextMenuStrip1.Closing += new System.Windows.Forms.ToolStripDropDownClosingEventHandler(this.contextMenuStrip1_Closing);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            this.contextMenuStrip1.Opened += new System.EventHandler(this.contextMenuStrip1_Opened);
+            this.aeroListView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.aeroListView1_MouseClick);
             // 
             // imageList1
             // 
@@ -111,7 +104,6 @@
             // 
             // notifyIcon1
             // 
-            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "Taskbar Folders";
             this.notifyIcon1.Visible = true;
@@ -133,7 +125,7 @@
             this.cueTextBox1.Location = new System.Drawing.Point(8, 3);
             this.cueTextBox1.MinimumSize = new System.Drawing.Size(0, 22);
             this.cueTextBox1.Name = "cueTextBox1";
-            this.cueTextBox1.Size = new System.Drawing.Size(240, 22);
+            this.cueTextBox1.Size = new System.Drawing.Size(304, 22);
             this.cueTextBox1.TabIndex = 1;
             this.cueTextBox1.TextChanged += new System.EventHandler(this.cueTextBox1_TextChanged);
             this.cueTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cueTextBox1_KeyDown);
@@ -151,7 +143,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(256, 26);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 26);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // mainContextMenu
@@ -365,12 +357,31 @@
             this.taskDialogButton2.ButtonType = Ookii.Dialogs.WinForms.ButtonType.Cancel;
             this.taskDialogButton2.Text = "Cancel";
             // 
+            // taskDialog2
+            // 
+            this.taskDialog2.Buttons.Add(this.taskDialogButton3);
+            this.taskDialog2.Buttons.Add(this.taskDialogButton4);
+            this.taskDialog2.Content = "This action cannot be undone.";
+            this.taskDialog2.MainIcon = Ookii.Dialogs.WinForms.TaskDialogIcon.Warning;
+            this.taskDialog2.MainInstruction = "Do you want to delete this taskbar folder?";
+            this.taskDialog2.WindowTitle = "Exit Program?";
+            // 
+            // taskDialogButton3
+            // 
+            this.taskDialogButton3.ButtonType = Ookii.Dialogs.WinForms.ButtonType.Ok;
+            this.taskDialogButton3.Text = "Delete Folder";
+            // 
+            // taskDialogButton4
+            // 
+            this.taskDialogButton4.ButtonType = Ookii.Dialogs.WinForms.ButtonType.Cancel;
+            this.taskDialogButton4.Text = "Cancel";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(256, 128);
+            this.ClientSize = new System.Drawing.Size(320, 192);
             this.ControlBox = false;
             this.Controls.Add(this.aeroListView1);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -402,7 +413,6 @@
         private AeroSuite.Controls.AeroListView aeroListView1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private AeroSuite.Controls.CueTextBox cueTextBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -435,6 +445,9 @@
         private Ookii.Dialogs.WinForms.TaskDialogButton taskDialogButton1;
         private Ookii.Dialogs.WinForms.TaskDialogButton taskDialogButton2;
         private System.Windows.Forms.ToolStripMenuItem addProgramToolStripMenuItem;
+        private Ookii.Dialogs.WinForms.TaskDialog taskDialog2;
+        private Ookii.Dialogs.WinForms.TaskDialogButton taskDialogButton3;
+        private Ookii.Dialogs.WinForms.TaskDialogButton taskDialogButton4;
     }
 }
 

@@ -38,6 +38,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.aeroListView1 = new AeroSuite.Controls.AeroListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.bottomPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -106,17 +107,19 @@
             // 
             // aeroListView1
             // 
+            this.aeroListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.aeroListView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.aeroListView1.FullRowSelect = true;
             this.aeroListView1.HideSelection = false;
             this.aeroListView1.LargeImageList = this.imageList1;
-            this.aeroListView1.Location = new System.Drawing.Point(0, 0);
+            this.aeroListView1.Location = new System.Drawing.Point(0, 13);
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
-            this.aeroListView1.Size = new System.Drawing.Size(546, 410);
+            this.aeroListView1.Size = new System.Drawing.Size(546, 397);
             this.aeroListView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.aeroListView1.TabIndex = 23;
             this.aeroListView1.UseCompatibleStateImageBehavior = false;
+            this.aeroListView1.View = System.Windows.Forms.View.Tile;
             this.aeroListView1.SelectedIndexChanged += new System.EventHandler(this.aeroListView1_SelectedIndexChanged);
             // 
             // imageList1
@@ -125,12 +128,23 @@
             this.imageList1.ImageSize = new System.Drawing.Size(64, 64);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(227, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "This menu is experimental and may have bugs.";
+            // 
             // StartMenuProgramDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(546, 450);
             this.Controls.Add(this.aeroListView1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.bottomPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -141,6 +155,7 @@
             this.bottomPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -153,5 +168,6 @@
         private System.Windows.Forms.Button button2;
         private AeroSuite.Controls.AeroListView aeroListView1;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Label label1;
     }
 }

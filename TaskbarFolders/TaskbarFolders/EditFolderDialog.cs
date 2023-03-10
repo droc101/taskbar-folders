@@ -31,6 +31,37 @@ namespace TaskbarFolders
                     tabControl1.TabPages.Add(exp);
                 }
             }
+            switch (settings.groupingMode)
+            {
+                case GroupingMode.NONE:
+                    groupingNone.Checked= true;
+                    break;
+                case GroupingMode.ITEM_TYPE:
+                    groupingType.Checked = true;
+                    break;
+                case GroupingMode.TAG:
+                    groupingTag.Checked = true;
+                    break;
+                default:
+                    groupingNone.Checked = true;
+                    break; // Treat as "None"
+            }
+
+            switch (settings.sortMode)
+            {
+                case SortOrder.None:
+                    sortNone.Checked= true;
+                    break;
+                case SortOrder.Ascending:
+                    sortAsc.Checked= true;
+                    break; 
+                case SortOrder.Descending:
+                    sortNone.Checked= true;
+                    break;
+                default:
+                    sortNone.Checked = true;
+                    break;
+            }
         }
 
         void UpdateTagLV()
@@ -65,6 +96,27 @@ namespace TaskbarFolders
             settings.color = panel1.BackColor;
             settings.useColor = radioButton2.Checked;
             settings.Tags.Clear();
+            if (groupingNone.Checked)
+            {
+                settings.groupingMode = GroupingMode.NONE;
+            } else if (groupingType.Checked)
+            {
+                settings.groupingMode = GroupingMode.ITEM_TYPE;
+            } else
+            {
+                settings.groupingMode = GroupingMode.TAG;
+            }
+
+            if (sortAsc.Checked)
+            {
+                settings.sortMode = SortOrder.Ascending;
+            } else if (sortDec.Checked)
+            {
+                settings.sortMode = SortOrder.Descending;
+            } else
+            {
+                settings.sortMode = SortOrder.None;
+            }
             foreach (ListViewItem lvi in aeroListView1.Items)
             {
                 Tag tag = new Tag();
