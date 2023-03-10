@@ -27,5 +27,10 @@ namespace TaskbarFolders
         {
             Process.Start("https://droc101.dev");
         }
+        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

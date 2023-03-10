@@ -239,10 +239,6 @@ namespace TaskbarFolders
             Program.SaveSettings();
         }
 
-        private void contextMenuStrip1_Opened(object sender, EventArgs e)
-        {
-        }
-
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -323,7 +319,7 @@ namespace TaskbarFolders
 
         private void Form1_Load(object sender, EventArgs e)
         {
-        }
+        }   
 
         private void cueTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -441,15 +437,6 @@ namespace TaskbarFolders
                 item.Tag = from;
             }
             return tempList;
-        }
-
-        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            
-        }
-
-        private void contextMenuStrip1_Closing(object sender, ToolStripDropDownClosingEventArgs e)
-        {
         }
 
         private void addFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -623,11 +610,6 @@ namespace TaskbarFolders
             SavePins();
         }
 
-        private void toolStripSeparator7_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void addProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StartMenuProgramDialog pd = new StartMenuProgramDialog();
@@ -643,7 +625,7 @@ namespace TaskbarFolders
             }
         }
 
-        private void aeroListView1_MouseClick(object sender, MouseEventArgs e)
+        private void aeroListView1_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {

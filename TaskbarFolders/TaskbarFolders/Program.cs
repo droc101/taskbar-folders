@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Reflection;
 using System.Linq;
 
+// Note to anyone who has decided to read or modify this code:
+// I apologize for the terrible code style.
+
 namespace TaskbarFolders
 {
     public static class Program

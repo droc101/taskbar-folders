@@ -88,13 +88,13 @@
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
             this.aeroListView1.ShowItemToolTips = true;
-            this.aeroListView1.Size = new System.Drawing.Size(320, 166);
+            this.aeroListView1.Size = new System.Drawing.Size(316, 162);
             this.aeroListView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.aeroListView1.TabIndex = 0;
             this.aeroListView1.UseCompatibleStateImageBehavior = false;
             this.aeroListView1.ItemActivate += new System.EventHandler(this.aeroListView1_ItemActivate);
             this.aeroListView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.aeroListView1_KeyDown);
-            this.aeroListView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.aeroListView1_MouseClick);
+            this.aeroListView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.aeroListView1_MouseUp);
             // 
             // imageList1
             // 
@@ -125,7 +125,7 @@
             this.cueTextBox1.Location = new System.Drawing.Point(8, 3);
             this.cueTextBox1.MinimumSize = new System.Drawing.Size(0, 22);
             this.cueTextBox1.Name = "cueTextBox1";
-            this.cueTextBox1.Size = new System.Drawing.Size(304, 22);
+            this.cueTextBox1.Size = new System.Drawing.Size(300, 22);
             this.cueTextBox1.TabIndex = 1;
             this.cueTextBox1.TextChanged += new System.EventHandler(this.cueTextBox1_TextChanged);
             this.cueTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cueTextBox1_KeyDown);
@@ -143,7 +143,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 26);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(316, 26);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // mainContextMenu
@@ -381,7 +381,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(320, 192);
+            this.ClientSize = new System.Drawing.Size(316, 188);
             this.ControlBox = false;
             this.Controls.Add(this.aeroListView1);
             this.Controls.Add(this.tableLayoutPanel1);
