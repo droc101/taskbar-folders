@@ -261,7 +261,7 @@
             this.toolStripSeparator9,
             this.openFileLocationToolStripMenuItem});
             this.fileContextMenu.Name = "fileContextMeny";
-            this.fileContextMenu.Size = new System.Drawing.Size(174, 76);
+            this.fileContextMenu.Size = new System.Drawing.Size(181, 98);
             // 
             // openToolStripMenuItem
             // 
@@ -286,9 +286,8 @@
             // 
             // openFileLocationToolStripMenuItem
             // 
-            this.openFileLocationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openFileLocationToolStripMenuItem.Image")));
             this.openFileLocationToolStripMenuItem.Name = "openFileLocationToolStripMenuItem";
-            this.openFileLocationToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.openFileLocationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openFileLocationToolStripMenuItem.Text = "Open File &Location";
             this.openFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openFileLocationToolStripMenuItem_Click);
             // 

@@ -36,7 +36,7 @@ namespace HelloPlugin
         // Handler to modify pinned items
         public override void ItemHandler(ListViewItem item)
         {
-            item.Text += " :)";
+            item.Text = "[" + item.Text + "]";
         }
 
         // Handler for the item context menu
@@ -51,7 +51,13 @@ namespace HelloPlugin
         // Handler for folder creation
         public override void OnFolderLoad(Form1 folder)
         {
-            folder.BackColor = Color.Red;
+            Label lbl = new Label();
+            lbl.AutoSize = false;
+            lbl.TextAlign = ContentAlignment.MiddleCenter;
+            lbl.Text = "Example folder load modification";
+            lbl.Dock = DockStyle.Bottom;
+            folder.Controls.Add(lbl);
+            folder.Controls.SetChildIndex(lbl, 0);
         }
 
         // Properties page handler
@@ -59,6 +65,12 @@ namespace HelloPlugin
         {
             TabPage tp = new TabPage();
             tp.Text = "Plugin Page";
+            Label lbl = new Label();
+            lbl.AutoSize = false;
+            lbl.TextAlign = ContentAlignment.MiddleCenter;
+            lbl.Text = "Example plugins page";
+            lbl.Dock= DockStyle.Fill;
+            tp.Controls.Add(lbl);
             return tp;
         }
 

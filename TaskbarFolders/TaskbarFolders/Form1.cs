@@ -45,6 +45,8 @@ namespace TaskbarFolders
             {
                 ex.OnFolderLoad(this);
             }
+            //var CMS = SummonContextMenu();
+            //notifyIcon1.ContextMenuStrip = CMS;
         }
 
         void UpdateLooks()
@@ -92,6 +94,8 @@ namespace TaskbarFolders
             {
                 AddPinnedItem(pin);
             }
+
+            
         }
 
         private void Tmi_CheckedChanged(object sender, EventArgs e)
@@ -252,18 +256,34 @@ namespace TaskbarFolders
                 BringToFront();
             } else if (e.Button == MouseButtons.Right)
             {
-                SummonContextMenu();
+                Form form = new Form();
+                form.Opacity = 0;
+                form.StartPosition = FormStartPosition.Manual;
+                form.Location = new Point(999999, 999999);
+                form.ShowInTaskbar = false;
+                form.FormBorderStyle = FormBorderStyle.None;
+                form.Show();
+                form.Activate();
+                var CMS = SummonContextMenu();
+                CMS.Closed += delegate
+                {
+                    form.Close();
+                };
+                CMS.Show(this, Cursor.Position);
+                CMS.Focus();
             }
         }
 
-        void SummonContextMenu()
+        ContextMenuStrip SummonContextMenu()
         {
             ContextMenuStrip CMS = new ContextMenuStrip();
+            
             if (aeroListView1.SelectedItems.Count != 0 && Visible)
             {
                 if (Directory.Exists(aeroListView1.SelectedItems[0].ImageKey))
                 {
                     TransferMenuItems(folderContextItems, CMS.Items);
+                    
                     foreach (Extension ex in Program.extensions)
                     {
                         TransferMenuItems(ex.FolderMenuHandler().ToList(), CMS.Items);
@@ -317,8 +337,7 @@ namespace TaskbarFolders
             }
             TransferMenuItems(mainContextItems, CMS.Items);
             CMS.AutoClose = true;
-
-            CMS.Show(Cursor.Position);
+            return CMS;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -638,7 +657,7 @@ namespace TaskbarFolders
         {
             if (e.Button == MouseButtons.Right)
             {
-                SummonContextMenu();
+                SummonContextMenu().Show(Cursor.Position);
             }
         }
     }
