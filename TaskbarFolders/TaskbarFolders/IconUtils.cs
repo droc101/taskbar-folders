@@ -93,10 +93,10 @@ namespace TaskbarFolders
 
         public enum IconSizeEnum
         {
-            SmallIcon16 = SHGFI_SMALLICON,
-            MediumIcon32 = SHGFI_LARGEICON,
+            ExtraLargeIcon = SHIL_JUMBO,
             LargeIcon48 = SHIL_EXTRALARGE,
-            ExtraLargeIcon = SHIL_JUMBO
+            MediumIcon32 = SHGFI_LARGEICON,
+            SmallIcon16 = SHGFI_SMALLICON,
         }
 
         [DllImport("user32")]
@@ -202,10 +202,10 @@ namespace TaskbarFolders
             return hIcon;
         }
 
-public static Bitmap ScaleBitmap(Bitmap originalBitmap)
+public static Bitmap ScaleBitmap(Bitmap originalBitmap, int x = 64, int y = 64)
     {
         // Create a new bitmap with the desired size
-        Bitmap scaledBitmap = new Bitmap(64, 64);
+        Bitmap scaledBitmap = new Bitmap(x, y);
 
         // Create a Graphics object from the scaled bitmap
         Graphics graphics = Graphics.FromImage(scaledBitmap);

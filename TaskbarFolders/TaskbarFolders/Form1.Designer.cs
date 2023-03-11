@@ -80,13 +80,14 @@
             this.aeroListView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.aeroListView1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.aeroListView1.FullRowSelect = true;
+            this.aeroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.aeroListView1.HideSelection = false;
             this.aeroListView1.LargeImageList = this.imageList1;
             this.aeroListView1.Location = new System.Drawing.Point(0, 26);
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
             this.aeroListView1.ShowItemToolTips = true;
-            this.aeroListView1.Size = new System.Drawing.Size(304, 150);
+            this.aeroListView1.Size = new System.Drawing.Size(292, 138);
             this.aeroListView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.aeroListView1.TabIndex = 0;
             this.aeroListView1.UseCompatibleStateImageBehavior = false;
@@ -123,7 +124,7 @@
             this.cueTextBox1.Location = new System.Drawing.Point(8, 3);
             this.cueTextBox1.MinimumSize = new System.Drawing.Size(0, 22);
             this.cueTextBox1.Name = "cueTextBox1";
-            this.cueTextBox1.Size = new System.Drawing.Size(288, 22);
+            this.cueTextBox1.Size = new System.Drawing.Size(276, 22);
             this.cueTextBox1.TabIndex = 1;
             this.cueTextBox1.TextChanged += new System.EventHandler(this.cueTextBox1_TextChanged);
             this.cueTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cueTextBox1_KeyDown);
@@ -141,7 +142,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(304, 26);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(292, 26);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // mainContextMenu
@@ -203,7 +204,7 @@
             this.programSettingsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("programSettingsToolStripMenuItem.Image")));
             this.programSettingsToolStripMenuItem.Name = "programSettingsToolStripMenuItem";
             this.programSettingsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.programSettingsToolStripMenuItem.Text = "&About";
+            this.programSettingsToolStripMenuItem.Text = "Program &Settings";
             this.programSettingsToolStripMenuItem.Click += new System.EventHandler(this.programSettingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
@@ -366,7 +367,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(304, 176);
+            this.ClientSize = new System.Drawing.Size(292, 164);
             this.ControlBox = false;
             this.Controls.Add(this.aeroListView1);
             this.Controls.Add(this.tableLayoutPanel1);

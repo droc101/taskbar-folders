@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using TaskbarFolders;
 
@@ -8,6 +9,16 @@ namespace HelloPlugin
     // Example of all event handlers
     public class HelloPlugin : TaskbarFolders.Extension
     {
+        public override ExtensionInfo GetInfo()
+        {
+            ExtensionInfo info = new ExtensionInfo();
+            info.Name = "Example Plugin";
+            info.Version = Assembly.GetExecutingAssembly().GetName().Version;
+            info.Description = "Example plugin that demonstrates all handlers.";
+            info.Developer = "droc101";
+            return info;
+        }
+
         // Handler to add items to the global context menu
         public override ToolStripItem[] MainMenuHandler()
         {
@@ -84,6 +95,22 @@ namespace HelloPlugin
             lbl.TextAlign = ContentAlignment.MiddleCenter;
             lbl.Text = "Example plugins page";
             lbl.Dock= DockStyle.Fill;
+            lbl.BackColor = Color.Transparent;
+            tp.Controls.Add(lbl);
+            return tp;
+        }
+
+        // Settings page handler
+        public override TabPage SettingsHandler()
+        {
+            TabPage tp = new TabPage();
+            tp.Text = "Plugin Page";
+            Label lbl = new Label();
+            lbl.AutoSize = false;
+            lbl.TextAlign = ContentAlignment.MiddleCenter;
+            lbl.Text = "Example plugins page";
+            lbl.Dock = DockStyle.Fill;
+            lbl.BackColor = Color.Transparent;
             tp.Controls.Add(lbl);
             return tp;
         }

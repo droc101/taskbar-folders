@@ -56,13 +56,13 @@
             this.sortNone = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.aeroListView1 = new AeroSuite.Controls.AeroListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.aeroListView1 = new AeroSuite.Controls.AeroListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bottomPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -136,7 +136,7 @@
             // 
             // cueTextBox1
             // 
-            this.cueTextBox1.Cue = "Type the folder name here";
+            this.cueTextBox1.Cue = "Folder Name";
             this.cueTextBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cueTextBox1.Location = new System.Drawing.Point(62, 9);
             this.cueTextBox1.Name = "cueTextBox1";
@@ -157,7 +157,7 @@
             // 
             this.button3.Location = new System.Drawing.Point(421, 132);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(32, 20);
+            this.button3.Size = new System.Drawing.Size(32, 22);
             this.button3.TabIndex = 7;
             this.button3.Text = "...";
             this.button3.UseVisualStyleBackColor = true;
@@ -362,8 +362,8 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.flowLayoutPanel3);
             this.tabPage2.Controls.Add(this.aeroListView1);
+            this.tabPage2.Controls.Add(this.flowLayoutPanel3);
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage2.Name = "tabPage2";
@@ -372,6 +372,34 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tags";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // aeroListView1
+            // 
+            this.aeroListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.aeroListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.aeroListView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aeroListView1.FullRowSelect = true;
+            this.aeroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.aeroListView1.HideSelection = false;
+            this.aeroListView1.Location = new System.Drawing.Point(8, 8);
+            this.aeroListView1.MultiSelect = false;
+            this.aeroListView1.Name = "aeroListView1";
+            this.aeroListView1.Size = new System.Drawing.Size(447, 331);
+            this.aeroListView1.TabIndex = 0;
+            this.aeroListView1.UseCompatibleStateImageBehavior = false;
+            this.aeroListView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Name";
+            this.columnHeader1.Width = 215;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Color";
+            this.columnHeader2.Width = 82;
             // 
             // flowLayoutPanel3
             // 
@@ -414,35 +442,6 @@
             this.button5.Text = "Remove Tag";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // aeroListView1
-            // 
-            this.aeroListView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.aeroListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.aeroListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aeroListView1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aeroListView1.FullRowSelect = true;
-            this.aeroListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.aeroListView1.HideSelection = false;
-            this.aeroListView1.Location = new System.Drawing.Point(8, 8);
-            this.aeroListView1.MultiSelect = false;
-            this.aeroListView1.Name = "aeroListView1";
-            this.aeroListView1.Size = new System.Drawing.Size(447, 362);
-            this.aeroListView1.TabIndex = 0;
-            this.aeroListView1.UseCompatibleStateImageBehavior = false;
-            this.aeroListView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 215;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Color";
-            this.columnHeader2.Width = 82;
             // 
             // EditFolderDialog
             // 

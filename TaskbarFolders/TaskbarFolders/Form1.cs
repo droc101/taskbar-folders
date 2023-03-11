@@ -146,6 +146,7 @@ namespace TaskbarFolders
             ListViewItem lvi = new ListViewItem();
             lvi.Text = desc;
             Image bmp = IconUtils.GetLargestIcon(filePath);
+            bmp = IconUtils.ScaleBitmap((Bitmap)bmp, imageList1.ImageSize.Width, imageList1.ImageSize.Height);
             imageList1.Images.Add(filePath, bmp);
             lvi.ImageKey = filePath;
             switch (settings.groupingMode)
@@ -267,9 +268,10 @@ namespace TaskbarFolders
                 var CMS = SummonContextMenu();
                 CMS.Closed += delegate
                 {
+                    Location = new Point(0, 0);
                     form.Close();
                 };
-                CMS.Show(this, Cursor.Position);
+                CMS.Show(Cursor.Position);
                 CMS.Focus();
             }
         }

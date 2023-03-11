@@ -1,9 +1,27 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace TaskbarFolders
 {
     public class Extension // Base class for Plugins & Extensions. !!! NOT YET FINISHED !!!
     {
+
+        public struct ExtensionInfo
+        {
+            public string Name;
+            public string Description;
+            public string Developer;
+            public Version Version;
+        }
+
+        public virtual ExtensionInfo GetInfo()
+        {
+            ExtensionInfo info = new ExtensionInfo();
+            info.Name = "Unknown Extension";
+            info.Description = "This extension has not provided information.";
+            return info;
+        }
 
         public virtual void OnFolderLoad(Form1 folder) // Called after a folder loads.
         {
@@ -41,6 +59,11 @@ namespace TaskbarFolders
         }
 
         public virtual TabPage PropertiesHandler() // Called when the properties page is opening.
+        {
+            return null;
+        }
+
+        public virtual TabPage SettingsHandler() // Called when the settings page is loading
         {
             return null;
         }
