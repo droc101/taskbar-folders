@@ -112,10 +112,10 @@
             this.aeroListView1.FullRowSelect = true;
             this.aeroListView1.HideSelection = false;
             this.aeroListView1.LargeImageList = this.imageList1;
-            this.aeroListView1.Location = new System.Drawing.Point(0, 13);
+            this.aeroListView1.Location = new System.Drawing.Point(0, 25);
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
-            this.aeroListView1.Size = new System.Drawing.Size(546, 397);
+            this.aeroListView1.Size = new System.Drawing.Size(546, 385);
             this.aeroListView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.aeroListView1.TabIndex = 23;
             this.aeroListView1.UseCompatibleStateImageBehavior = false;
@@ -130,13 +130,14 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(227, 13);
+            this.label1.Size = new System.Drawing.Size(546, 25);
             this.label1.TabIndex = 24;
             this.label1.Text = "This menu is experimental and may have bugs.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // StartMenuProgramDialog
             // 
@@ -155,7 +156,6 @@
             this.bottomPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

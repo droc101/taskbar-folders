@@ -126,7 +126,12 @@ namespace TaskbarFolders
             string desc = myFileVersionInfo.FileDescription;
             if (String.IsNullOrEmpty(desc))
             {
-                desc = new FileInfo(pin.Path).Name;
+                var fi = new FileInfo(pin.Path);
+                desc = Path.GetFileNameWithoutExtension(pin.Path);
+                if (currentSettings.ShowFileExtensions)
+                {
+                    desc += fi.Extension;
+                }
             }
             return desc;
         }
@@ -141,6 +146,15 @@ namespace TaskbarFolders
 
         public void AddPinnedItem(Program.Pin pin)
         {
+
+            if (!File.Exists(pin.Path))
+            {
+                if (!Directory.Exists(pin.Path)) {
+                    // File or Folder missing; don't pin it
+                    return;
+                }
+            }
+
             string filePath = pin.Path;
             string desc = GetItemDesc(pin);
             ListViewItem lvi = new ListViewItem();
@@ -285,19 +299,32 @@ namespace TaskbarFolders
                 if (Directory.Exists(aeroListView1.SelectedItems[0].ImageKey))
                 {
                     TransferMenuItems(folderContextItems, CMS.Items);
-                    
+
                     foreach (Extension ex in Program.extensions)
                     {
-                        TransferMenuItems(ex.FolderMenuHandler().ToList(), CMS.Items);
+                        var MenuItems = ex.FolderMenuHandler().ToList();
+                        if (MenuItems.Count > 0)
+                        {
+                            AddMenuSeperator(CMS.Items);
+                            TransferMenuItems(MenuItems, CMS.Items);
+                        }
+                        
                     }
                     AddMenuSeperator(CMS.Items);
                 }
                 else
                 {
                     TransferMenuItems(fileContextItems, CMS.Items);
+
                     foreach (Extension ex in Program.extensions)
                     {
-                        TransferMenuItems(ex.FileMenuHandler().ToList(), CMS.Items);
+                        var MenuItems = ex.FileMenuHandler().ToList();
+                        if (MenuItems.Count > 0)
+                        {
+                            AddMenuSeperator(CMS.Items);
+                            TransferMenuItems(MenuItems, CMS.Items);
+                        }
+
                     }
                     AddMenuSeperator(CMS.Items);
                 }
@@ -329,13 +356,26 @@ namespace TaskbarFolders
                 TransferMenuItems(itemContextItems, CMS.Items);
                 foreach (Extension ex in Program.extensions)
                 {
-                    TransferMenuItems(ex.ItemMenuHandler().ToList(), CMS.Items);
+                    var MenuItems = ex.ItemMenuHandler().ToList();
+                    if (MenuItems.Count > 0)
+                    {
+                        AddMenuSeperator(CMS.Items);
+                        TransferMenuItems(MenuItems, CMS.Items);
+                    }
+
                 }
                 AddMenuSeperator(CMS.Items);
             }
             foreach (Extension ex in Program.extensions)
             {
-                TransferMenuItems(ex.MainMenuHandler().ToList(), CMS.Items);
+                var MenuItems = ex.MainMenuHandler().ToList();
+                if (MenuItems.Count > 0)
+                {
+                    
+                    TransferMenuItems(MenuItems, CMS.Items);
+                    AddMenuSeperator(CMS.Items);
+                }
+
             }
             TransferMenuItems(mainContextItems, CMS.Items);
             CMS.AutoClose = true;
@@ -628,7 +668,11 @@ namespace TaskbarFolders
 
         private void programSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new SettingsForm().ShowDialog();
+            SettingsForm sf = new SettingsForm();
+            if (sf.ShowDialog() == DialogResult.OK)
+            {
+                UpdateLooks();
+            }
         }
 
         private void removeItemToolStripMenuItem_Click(object sender, EventArgs e)

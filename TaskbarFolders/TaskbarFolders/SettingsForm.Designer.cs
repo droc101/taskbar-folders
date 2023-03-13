@@ -60,8 +60,9 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.captionLabel2 = new AeroSuite.Controls.CaptionLabel();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.aeroListView2 = new AeroSuite.Controls.AeroListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -77,16 +78,19 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.captionLabel1 = new AeroSuite.Controls.CaptionLabel();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.captionLabel2 = new AeroSuite.Controls.CaptionLabel();
             this.bottomPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bottomPanel1
@@ -250,8 +254,9 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.ItemSize = new System.Drawing.Size(96, 24);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -261,27 +266,37 @@
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 20;
             // 
-            // tabPage1
+            // tabPage3
             // 
-            this.tabPage1.Controls.Add(this.captionLabel2);
-            this.tabPage1.Controls.Add(this.aeroListView1);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(498, 307);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "About";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage3.Controls.Add(this.checkBox2);
+            this.tabPage3.Controls.Add(this.checkBox1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(498, 307);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "General";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // captionLabel2
+            // checkBox2
             // 
-            this.captionLabel2.AutoSize = true;
-            this.captionLabel2.Location = new System.Drawing.Point(4, 170);
-            this.captionLabel2.Name = "captionLabel2";
-            this.captionLabel2.Size = new System.Drawing.Size(334, 21);
-            this.captionLabel2.TabIndex = 19;
-            this.captionLabel2.Text = "Thanks to the developers of 3rd party libraries!";
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(8, 29);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(159, 17);
+            this.checkBox2.TabIndex = 1;
+            this.checkBox2.Text = "Always show welcome page";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(8, 6);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(122, 17);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Show file extensions";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -445,6 +460,28 @@
             this.captionLabel1.Text = "No Extensions Installed";
             this.captionLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.captionLabel2);
+            this.tabPage1.Controls.Add(this.aeroListView1);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(498, 307);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "About";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // captionLabel2
+            // 
+            this.captionLabel2.AutoSize = true;
+            this.captionLabel2.Location = new System.Drawing.Point(4, 170);
+            this.captionLabel2.Name = "captionLabel2";
+            this.captionLabel2.Size = new System.Drawing.Size(334, 21);
+            this.captionLabel2.TabIndex = 19;
+            this.captionLabel2.Text = "Thanks to the developers of 3rd party libraries!";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,8 +502,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -474,6 +511,8 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -513,5 +552,8 @@
         private System.Windows.Forms.Button button4;
         private AeroSuite.Controls.CaptionLabel captionLabel2;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

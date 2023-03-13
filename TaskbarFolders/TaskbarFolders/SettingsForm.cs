@@ -58,11 +58,16 @@ namespace TaskbarFolders
                     tabControl1.TabPages.Add(exp);
                 }
             }
+            checkBox1.Checked = Program.currentSettings.ShowFileExtensions;
+            checkBox2.Checked = Program.currentSettings.AlwaysShowWelcome;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Close();
+            Program.currentSettings.ShowFileExtensions = checkBox1.Checked;
+            Program.currentSettings.AlwaysShowWelcome = checkBox2.Checked;
+            Program.SaveSettings();
+            DialogResult= DialogResult.OK;
         }
 
         private void aeroListView2_SelectedIndexChanged(object sender, EventArgs e)

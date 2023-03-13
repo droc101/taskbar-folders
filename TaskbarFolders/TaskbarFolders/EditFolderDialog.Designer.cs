@@ -63,6 +63,8 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.headerlessTabPage1 = new AeroSuite.Controls.HeaderlessTabPage();
+            this.headerlessTabPage2 = new AeroSuite.Controls.HeaderlessTabPage();
             this.bottomPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -138,9 +140,9 @@
             // 
             this.cueTextBox1.Cue = "Folder Name";
             this.cueTextBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cueTextBox1.Location = new System.Drawing.Point(62, 9);
+            this.cueTextBox1.Location = new System.Drawing.Point(56, 9);
             this.cueTextBox1.Name = "cueTextBox1";
-            this.cueTextBox1.Size = new System.Drawing.Size(395, 25);
+            this.cueTextBox1.Size = new System.Drawing.Size(401, 25);
             this.cueTextBox1.TabIndex = 4;
             // 
             // cueTextBox2
@@ -443,6 +445,20 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // headerlessTabPage1
+            // 
+            this.headerlessTabPage1.Location = new System.Drawing.Point(0, 0);
+            this.headerlessTabPage1.Name = "headerlessTabPage1";
+            this.headerlessTabPage1.Size = new System.Drawing.Size(200, 100);
+            this.headerlessTabPage1.TabIndex = 0;
+            // 
+            // headerlessTabPage2
+            // 
+            this.headerlessTabPage2.Location = new System.Drawing.Point(0, 0);
+            this.headerlessTabPage2.Name = "headerlessTabPage2";
+            this.headerlessTabPage2.Size = new System.Drawing.Size(200, 100);
+            this.headerlessTabPage2.TabIndex = 0;
+            // 
             // EditFolderDialog
             // 
             this.AcceptButton = this.button2;
@@ -512,5 +528,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private AeroSuite.Controls.HeaderlessTabPage headerlessTabPage1;
+        private AeroSuite.Controls.HeaderlessTabPage headerlessTabPage2;
     }
 }

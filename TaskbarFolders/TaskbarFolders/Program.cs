@@ -39,6 +39,8 @@ namespace TaskbarFolders
         {
             public List<Folder> Folders;
             public int DataVersion;
+            public bool ShowFileExtensions;
+            public bool AlwaysShowWelcome;
         }
 
         public struct Pin
@@ -73,6 +75,11 @@ namespace TaskbarFolders
                 {
                     currentSettings = Newtonsoft.Json.JsonConvert.DeserializeObject<GlobalSettings>(File.ReadAllText(SrttingsPath));
                 }
+                if (currentSettings.AlwaysShowWelcome)
+                {
+                    Welcome welcome = new Welcome();
+                    welcome.ShowDialog();
+                }
             } else
             {
                 currentSettings = new GlobalSettings();
@@ -91,6 +98,7 @@ namespace TaskbarFolders
         public static Folder CreateDefaultFolder()
         {
             var folder = new Folder();
+            folder.Tags= new List<Tag>();
             folder.Pins = new List<Pin>();
             folder.Name = "New Folder";
             folder.color = Color.FromArgb(0, 120, 212);
@@ -120,6 +128,10 @@ namespace TaskbarFolders
         [STAThread]
         static void Main()
         {
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            Application.ThreadException += Application_ThreadException;
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             if (!Directory.Exists(PluginsPath))
             {
                 Directory.CreateDirectory(PluginsPath);
@@ -138,8 +150,7 @@ namespace TaskbarFolders
                 extensions.Add(x);
             });
             LoadSettings();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            
             foreach (Extension extension in extensions)
             {
                 extension.OnPluginStart();
@@ -151,6 +162,12 @@ namespace TaskbarFolders
             }
 
             Application.Run();
+        }
+
+        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            ExceptionHandler exh = new ExceptionHandler(e.Exception);
+            exh.ShowDialog();
         }
     }
 }

@@ -47,7 +47,7 @@
             // 
             this.bottomPanel1.Controls.Add(this.tableLayoutPanel1);
             this.bottomPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bottomPanel1.Location = new System.Drawing.Point(0, 145);
+            this.bottomPanel1.Location = new System.Drawing.Point(0, 124);
             this.bottomPanel1.Margin = new System.Windows.Forms.Padding(5);
             this.bottomPanel1.Name = "bottomPanel1";
             this.bottomPanel1.Size = new System.Drawing.Size(455, 40);
@@ -149,7 +149,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(455, 185);
+            this.ClientSize = new System.Drawing.Size(455, 164);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cueTextBox1);
