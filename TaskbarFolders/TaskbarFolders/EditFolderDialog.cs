@@ -22,6 +22,7 @@ namespace TaskbarFolders
             panel1.BackColor = settings.color;
             UpdateTagLV();
             UpdateLooks();
+            Round.MicaWindow(this);
             foreach (Extension ex in Program.extensions)
             {
                 TabPage exp = ex.PropertiesHandler();

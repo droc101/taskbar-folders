@@ -8,6 +8,7 @@ using System.Net.NetworkInformation;
 using static TaskbarFolders.Program;
 using System.Linq;
 using System.Text.RegularExpressions;
+using LibMaterial.Framework;
 
 namespace TaskbarFolders
 {
@@ -18,6 +19,7 @@ namespace TaskbarFolders
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         List<ToolStripItem> folderContextItems;
@@ -45,6 +47,7 @@ namespace TaskbarFolders
             {
                 ex.OnFolderLoad(this);
             }
+            Round.MicaWindow(this);
             //var CMS = SummonContextMenu();
             //notifyIcon1.ContextMenuStrip = CMS;
         }
@@ -294,6 +297,11 @@ namespace TaskbarFolders
         {
             ContextMenuStrip CMS = new ContextMenuStrip();
             
+            CMS.Renderer = new FlatRenderer();
+
+            Round.RoundWindow(CMS.Handle);
+            Round.RoundWindow(tagsToolStripMenuItem.DropDown.Handle);
+
             if (aeroListView1.SelectedItems.Count != 0 && Visible)
             {
                 if (Directory.Exists(aeroListView1.SelectedItems[0].ImageKey))

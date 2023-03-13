@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskbarFolders", "TaskbarFo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPlugin", "HelloPlugin\HelloPlugin.csproj", "{84789354-B16F-4C3D-AFB7-41474282B76E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibMaterial.Framework", "C:\Users\droc101\Desktop\LibMaterial\LibMaterial.Framework.csproj", "{08BF26F1-E3B6-49B2-9383-3145F7518AAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{84789354-B16F-4C3D-AFB7-41474282B76E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84789354-B16F-4C3D-AFB7-41474282B76E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84789354-B16F-4C3D-AFB7-41474282B76E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08BF26F1-E3B6-49B2-9383-3145F7518AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08BF26F1-E3B6-49B2-9383-3145F7518AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08BF26F1-E3B6-49B2-9383-3145F7518AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08BF26F1-E3B6-49B2-9383-3145F7518AAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

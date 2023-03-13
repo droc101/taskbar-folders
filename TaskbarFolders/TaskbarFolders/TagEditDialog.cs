@@ -21,6 +21,7 @@ namespace TaskbarFolders
             this.tag = tag;
             cueTextBox1.Text = tag.Name;
             panel1.BackColor = tag.FontColor;
+            Round.MicaWindow(this);
         }
 
         private void TagEditDialog_Load(object sender, EventArgs e)

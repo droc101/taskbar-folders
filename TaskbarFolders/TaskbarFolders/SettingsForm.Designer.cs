@@ -43,6 +43,9 @@
             System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
             "Ookii.Dialogs.WinForms",
             "Ookii Dialogs Contributors"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            "LibMaterial",
+            "Simple-2021"}, -1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.bottomPanel1 = new AeroSuite.Controls.BottomPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -233,7 +236,8 @@
             listViewItem2,
             listViewItem3,
             listViewItem4,
-            listViewItem5});
+            listViewItem5,
+            listViewItem6});
             this.aeroListView1.Location = new System.Drawing.Point(8, 194);
             this.aeroListView1.MultiSelect = false;
             this.aeroListView1.Name = "aeroListView1";
