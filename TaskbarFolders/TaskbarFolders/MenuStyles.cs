@@ -22,21 +22,26 @@ namespace TaskbarFolders
         {
 
             e.Graphics.DrawString("", SystemFonts.MenuFont, SystemBrushes.MenuText, e.ImageRectangle.Location);
-            //base.OnRenderItemCheck(e);
+        }
+
+        protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
+        {
+            e.Graphics.DrawString("⯈", SystemFonts.MenuFont, SystemBrushes.MenuText, e.ArrowRectangle.Location);
         }
 
     }
 
     public class FlatColors : ProfessionalColorTable
     {
+
         public override Color ToolStripDropDownBackground => SystemColors.Menu;
         public override Color ImageMarginGradientBegin => SystemColors.Menu;
         public override Color ImageMarginGradientMiddle => SystemColors.Menu;
 
-        public override Color MenuBorder => SystemColors.Menu;
+        public override Color MenuBorder => SystemColors.ButtonShadow;
 
         public override Color MenuItemSelected => SystemColors.ButtonShadow;
-        public override Color MenuItemBorder => SystemColors.Menu;
+        public override Color MenuItemBorder => SystemColors.ButtonShadow;
 
         public override Color SeparatorDark => SystemColors.ButtonShadow;
         public override Color SeparatorLight => SystemColors.ButtonShadow;

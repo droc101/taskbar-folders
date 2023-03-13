@@ -26,7 +26,6 @@ namespace TaskbarFolders
         public static void RoundWindow(Form window)
         {
             RoundWindow(window.Handle);
-            MicaWindow(window);
         }
 
         public static void RoundWindow(IntPtr window)
@@ -34,12 +33,11 @@ namespace TaskbarFolders
             var attribute = DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE;
             var preference = DWMWCP_ROUND;
             DwmSetWindowAttribute(window, attribute, ref preference, sizeof(uint));
-            
         }
 
         public static void MicaWindow(Form window)
         {
-            bool DarkStatus = !LibRegistry.GetAppUseLightTheme();
+            bool DarkStatus = !LibRegistry.GetAppUseLightTheme(); // Win32 doesn't do dark mode :(
             LibApply.Apply_Light_Theme(window.Handle, DarkStatus);
             LibApply.Apply_Transparent_Form(window.Handle, DarkStatus);
             LibApply.Apply_Backdrop_Effect(window.Handle, LibImport.DwmSystemBackdropTypeFlgs.DWMSBT_MAINWINDOW);

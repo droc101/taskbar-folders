@@ -16,6 +16,7 @@ namespace TaskbarFolders
         public Welcome()
         {
             InitializeComponent();
+            Round.MicaWindow(this);
         }
 
         private void aeroLinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

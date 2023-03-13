@@ -47,7 +47,9 @@ namespace TaskbarFolders
             {
                 ex.OnFolderLoad(this);
             }
-            Round.MicaWindow(this);
+            //ListViewExtensions.SetTransparentBackground(aeroListView1);
+            //BackColor = SystemColors.Window;
+            //Round.MicaWindow(this);
             //var CMS = SummonContextMenu();
             //notifyIcon1.ContextMenuStrip = CMS;
         }
